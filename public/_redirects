@@ -1,0 +1,3 @@
+# SPA fallback — serve index.html for any path so deep links / refreshes never 404.
+# (Fixes the original site, where /contact, /faqs, /request-repair returned HTTP 404.)
+/*    /index.html   200
