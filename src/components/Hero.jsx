@@ -77,7 +77,7 @@ export default function Hero() {
             >
               <img
                 src="/img/hero-car.jpg"
-                alt="A freshly repaired car detailed to a flawless finish by AutoFix Cyprus"
+                alt="AutoFix Cyprus assessing accident damage on a customer's car"
                 className="aspect-[4/3] w-full object-cover"
                 width="800"
                 height="600"
