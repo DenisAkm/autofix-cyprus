@@ -21,7 +21,7 @@ export function Logo({ light = false }) {
   );
 }
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ light = false }) {
   const { lang, setLang, locales } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -36,7 +36,11 @@ function LanguageSwitcher() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:border-brand-300 hover:text-brand-700"
+        className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+          light
+            ? "border-white/25 bg-white/10 text-white backdrop-blur hover:border-white/40"
+            : "border-slate-200 bg-white/70 text-slate-700 hover:border-brand-300 hover:text-brand-700"
+        }`}
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -117,6 +121,9 @@ export default function Navbar() {
     { href: "#contact", id: "contact", label: t("nav.contact") },
   ];
 
+  // Light theme at the top (over the dark video hero); dark theme once scrolled (over white page)
+  const light = !scrolled;
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -124,32 +131,36 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Logo />
+        <Logo light={light} />
 
         <div className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition hover:bg-slate-100/70 hover:text-brand-700 ${
-                active === l.id ? "text-brand-700" : "text-slate-600"
+              className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition ${
+                light
+                  ? `text-white/85 hover:bg-white/10 hover:text-white ${active === l.id ? "text-white" : ""}`
+                  : `hover:bg-slate-100/70 hover:text-brand-700 ${active === l.id ? "text-brand-700" : "text-slate-600"}`
               }`}
             >
               {l.label}
               <span
-                className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full bg-brand-600 transition-all duration-300 ${
-                  active === l.id ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full transition-all duration-300 ${
+                  light ? "bg-white" : "bg-brand-600"
+                } ${active === l.id ? "opacity-100" : "opacity-0"}`}
               />
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <LanguageSwitcher />
+          <LanguageSwitcher light={light} />
           <a
             href={CONTACT.phoneHref}
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-brand-700 sm:flex"
+            className={`hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition sm:flex ${
+              light ? "text-white/90 hover:text-white" : "text-slate-700 hover:text-brand-700"
+            }`}
           >
             <Icon.phone className="h-4 w-4" />
             <span className="hidden xl:inline">{CONTACT.phoneDisplay}</span>
@@ -163,7 +174,9 @@ export default function Navbar() {
           </a>
           <button
             onClick={() => setMenu(true)}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white/70 text-slate-700 lg:hidden"
+            className={`grid h-10 w-10 place-items-center rounded-xl border transition lg:hidden ${
+              light ? "border-white/25 bg-white/10 text-white backdrop-blur" : "border-slate-200 bg-white/70 text-slate-700"
+            }`}
             aria-label="Open menu"
           >
             <Icon.menu className="h-5 w-5" />
