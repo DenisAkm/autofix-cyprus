@@ -1,6 +1,7 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { buildWhatsappLink } from "../lib/config.js";
 import { Icon, Eyebrow, Reveal, useMagnetic } from "./ui.jsx";
+import VideoLoop from "./VideoLoop.jsx";
 
 export default function Hero() {
   const { t } = useI18n();
@@ -10,26 +11,8 @@ export default function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-28 pb-24 lg:pb-28">
-      {/* Background video */}
-      <video
-        className="absolute inset-0 h-full w-full scale-105 object-cover motion-reduce:hidden"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/img/hero-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="/video/hero.mp4" type="video/mp4" />
-      </video>
-      {/* Reduced-motion fallback */}
-      <img
-        src="/img/hero-poster.jpg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 hidden h-full w-full scale-105 object-cover motion-reduce:block"
-      />
+      {/* Seamless looping background video (mirrored so the technician sits on the open right side) */}
+      <VideoLoop src="/video/hero.mp4?v=2" poster="/img/hero-poster.jpg?v=2" mirror className="absolute inset-0" />
 
       {/* Legibility scrims */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/70 to-ink-950/25" />
