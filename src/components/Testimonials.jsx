@@ -1,4 +1,5 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
+import { TESTIMONIALS } from "../data/testimonials.js";
 import { Icon, Reveal } from "./ui.jsx";
 import SectionHeader from "./SectionHeader.jsx";
 
@@ -55,7 +56,7 @@ function Row({ items, reverse, offset = 0 }) {
 
 export default function Testimonials() {
   const { t } = useI18n();
-  const items = t("testimonials.items");
+  const items = TESTIMONIALS;
   const row1 = items.slice(0, 3);
   const row2 = items.slice(3);
 

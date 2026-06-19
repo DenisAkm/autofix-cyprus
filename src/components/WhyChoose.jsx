@@ -13,7 +13,7 @@ export default function WhyChoose() {
           <div className="overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-900/20 ring-1 ring-slate-100">
             <img
               src="/img/accent-tools.jpg"
-              alt="A fully-equipped certified workshop used by AutoFix Cyprus"
+              alt="Quality car repair work delivered by AutoFix Cyprus"
               loading="lazy"
               className="aspect-[5/4] w-full object-cover"
             />
