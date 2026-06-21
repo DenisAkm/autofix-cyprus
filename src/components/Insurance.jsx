@@ -1,25 +1,18 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { Icon, Reveal } from "./ui.jsx";
+import { INSURERS } from "../data/insurers.js";
 
 const POINT_ICONS = [Icon.shield, Icon.file, Icon.clock];
 
-// Abstract, monochrome logo placeholders (vary icon + wordmark width).
-// Swap for real Cyprus insurer logos when available.
-const LOGOS = [
-  { icon: Icon.shield, w: "w-20" },
-  { icon: Icon.badge, w: "w-14" },
-  { icon: Icon.car, w: "w-24" },
-  { icon: Icon.file, w: "w-16" },
-  { icon: Icon.star, w: "w-20" },
-  { icon: Icon.check, w: "w-12" },
-  { icon: Icon.wrench, w: "w-20" },
-];
-
-function LogoChip({ icon: I, w }) {
+// Real Cyprus insurers shown as clean wordmarks (or real logos once dropped in).
+function InsurerChip({ name, logo }) {
   return (
-    <div className="mx-2 flex h-14 w-44 shrink-0 items-center justify-center gap-2 rounded-2xl border border-slate-100 bg-white/80 text-slate-300 shadow-soft transition-colors duration-300 hover:text-brand-600">
-      <I className="h-5 w-5" />
-      <span className={`h-2.5 ${w} rounded-full bg-current opacity-40`} />
+    <div className="mx-2.5 flex h-14 shrink-0 items-center justify-center rounded-2xl border border-slate-100 bg-white/80 px-6 text-slate-400 shadow-soft transition-colors duration-300 hover:text-brand-700">
+      {logo ? (
+        <img src={logo} alt={name} loading="lazy" className="h-7 max-w-[150px] object-contain" />
+      ) : (
+        <span className="whitespace-nowrap text-[15px] font-bold tracking-tight text-current">{name}</span>
+      )}
     </div>
   );
 }
@@ -72,8 +65,8 @@ export default function Insurance() {
             </p>
             <div className="marquee-track mask-fade-x relative flex overflow-hidden">
               <div className="flex anim-marquee">
-                {[...LOGOS, ...LOGOS].map((l, i) => (
-                  <LogoChip key={i} icon={l.icon} w={l.w} />
+                {[...INSURERS, ...INSURERS].map((it, i) => (
+                  <InsurerChip key={i} name={it.name} logo={it.logo} />
                 ))}
               </div>
             </div>
