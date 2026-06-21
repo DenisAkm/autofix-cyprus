@@ -1,15 +1,18 @@
+import { useState } from "react";
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { Icon, Reveal } from "./ui.jsx";
 import { INSURERS } from "../data/insurers.js";
 
 const POINT_ICONS = [Icon.shield, Icon.file, Icon.clock];
 
-// Real Cyprus insurers shown as clean wordmarks (or real logos once dropped in).
+// Real Cyprus insurers. Renders an official logo if provided (public/img/insurers/),
+// otherwise a clean text wordmark; falls back to text if the logo fails to load.
 function InsurerChip({ name, logo }) {
+  const [broken, setBroken] = useState(false);
   return (
     <div className="mx-2.5 flex h-14 shrink-0 items-center justify-center rounded-2xl border border-slate-100 bg-white/80 px-6 text-slate-400 shadow-soft transition-colors duration-300 hover:text-brand-700">
-      {logo ? (
-        <img src={logo} alt={name} loading="lazy" className="h-7 max-w-[150px] object-contain" />
+      {logo && !broken ? (
+        <img src={logo} alt={name} loading="lazy" onError={() => setBroken(true)} className="h-7 max-w-[150px] object-contain" />
       ) : (
         <span className="whitespace-nowrap text-[15px] font-bold tracking-tight text-current">{name}</span>
       )}

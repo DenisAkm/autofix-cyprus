@@ -16,4 +16,5 @@ export const INSURERS = [
   { name: "Anytime" },
   { name: "Gan Direct" },
   { name: "Allianz" },
+  { name: "AIG" },
 ];

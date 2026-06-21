@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useI18n } from "../i18n/LanguageContext.jsx";
-import { CONTACT, CITIES, HOURS, buildWhatsappLink } from "../lib/config.js";
+import { CONTACT, CITIES, buildWhatsappLink } from "../lib/config.js";
 import { Icon, Eyebrow, Reveal } from "./ui.jsx";
 
-function Field({ label, children }) {
+function Field({ label, required, children }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-semibold text-ink-800">{label}</span>
+      <span className="mb-1.5 block text-sm font-semibold text-ink-800">
+        {label}
+        {required && <span className="text-red-500"> *</span>}
+      </span>
       {children}
     </label>
   );
@@ -18,16 +21,10 @@ const inputCls =
 export default function RequestForm() {
   const { t } = useI18n();
   const [form, setForm] = useState({ name: "", phone: "", city: "", service: "", message: "" });
-  const [photos, setPhotos] = useState([]);
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  const onFiles = (e) => {
-    const files = Array.from(e.target.files || []).slice(0, 6);
-    setPhotos(files.map((f) => ({ name: f.name, url: URL.createObjectURL(f) })));
-  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -36,7 +33,8 @@ export default function RequestForm() {
     if (!form.phone.trim()) errs.phone = t("form.errPhone");
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    window.open(buildWhatsappLink(form), "_blank", "noopener");
+    const phone = form.phone.trim() ? `+357 ${form.phone.trim()}` : "";
+    window.open(buildWhatsappLink({ ...form, phone }), "_blank", "noopener");
     setSent(true);
   };
 
@@ -128,7 +126,6 @@ export default function RequestForm() {
                   onClick={() => {
                     setSent(false);
                     setForm({ name: "", phone: "", city: "", service: "", message: "" });
-                    setPhotos([]);
                   }}
                   className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-700"
                 >
@@ -139,7 +136,7 @@ export default function RequestForm() {
             ) : (
               <form onSubmit={submit} noValidate className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <Field label={t("form.name")}>
+                  <Field label={t("form.name")} required>
                     <input
                       className={`${inputCls} ${errors.name ? "border-red-300 ring-4 ring-red-50" : ""}`}
                       placeholder={t("form.namePh")}
@@ -148,14 +145,24 @@ export default function RequestForm() {
                     />
                     {errors.name && <span className="mt-1 block text-xs font-medium text-red-500">{errors.name}</span>}
                   </Field>
-                  <Field label={t("form.phone")}>
-                    <input
-                      type="tel"
-                      className={`${inputCls} ${errors.phone ? "border-red-300 ring-4 ring-red-50" : ""}`}
-                      placeholder={t("form.phonePh")}
-                      value={form.phone}
-                      onChange={set("phone")}
-                    />
+                  <Field label={t("form.phone")} required>
+                    <div
+                      className={`flex overflow-hidden rounded-xl border bg-white transition focus-within:border-brand-400 focus-within:ring-4 focus-within:ring-brand-100 ${
+                        errors.phone ? "border-red-300 ring-4 ring-red-50" : "border-slate-200"
+                      }`}
+                    >
+                      <span className="flex items-center border-r border-slate-200 bg-slate-50 px-3 text-[15px] font-semibold text-slate-500">
+                        +357
+                      </span>
+                      <input
+                        type="tel"
+                        inputMode="tel"
+                        className="w-full bg-white px-4 py-3 text-[15px] text-ink-900 outline-none placeholder:text-slate-400"
+                        placeholder={t("form.phonePh")}
+                        value={form.phone}
+                        onChange={set("phone")}
+                      />
+                    </div>
                     {errors.phone && <span className="mt-1 block text-xs font-medium text-red-500">{errors.phone}</span>}
                   </Field>
                 </div>
@@ -199,20 +206,15 @@ export default function RequestForm() {
                   />
                 </Field>
 
-                {/* Photo upload */}
-                <div>
-                  <label className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 px-4 py-6 text-center transition hover:border-brand-300 hover:bg-brand-50/40">
-                    <Icon.upload className="h-6 w-6 text-brand-500" />
-                    <span className="text-sm font-medium text-slate-500">{t("form.photoNote")}</span>
-                    <input type="file" accept="image/*" multiple className="hidden" onChange={onFiles} />
-                  </label>
-                  {photos.length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {photos.map((p, i) => (
-                        <img key={i} src={p.url} alt={p.name} className="h-16 w-16 rounded-lg object-cover ring-1 ring-slate-200" />
-                      ))}
-                    </div>
-                  )}
+                {/* Photos — clarified: attached in the WhatsApp chat after sending (no fake upload) */}
+                <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
+                    <Icon.camera className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <div className="text-sm font-semibold text-ink-900">{t("form.photoTitle")}</div>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-slate-500">{t("form.photoNote")}</p>
+                  </div>
                 </div>
 
                 <button
