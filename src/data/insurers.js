@@ -7,14 +7,14 @@
 // public/img/insurers/ and add `logo: "/img/insurers/<file>"` to that entry.
 export const INSURERS = [
   { name: "Trust Insurance" },
-  { name: "General Insurance of Cyprus" },
+  { name: "General Insurance of Cyprus", logo: "/img/insurers/gic.png" },
   { name: "Pancyprian Insurance" },
   { name: "CNP Asfalistiki" },
-  { name: "Atlantic Insurance" },
-  { name: "Cosmos Insurance" },
-  { name: "Minerva Insurance" },
+  { name: "Atlantic Insurance", logo: "/img/insurers/atlantic.svg" },
+  { name: "Cosmos Insurance", logo: "/img/insurers/cosmos.svg" },
+  { name: "Minerva Insurance", logo: "/img/insurers/minerva.svg" },
   { name: "Anytime" },
-  { name: "Gan Direct" },
-  { name: "Allianz" },
-  { name: "AIG" },
+  { name: "Gan Direct", logo: "/img/insurers/gandirect.png" },
+  { name: "Allianz", logo: "/img/insurers/allianz.svg" },
+  { name: "AIG", logo: "/img/insurers/aig.svg" },
 ];
