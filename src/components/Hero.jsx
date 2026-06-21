@@ -1,13 +1,20 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { buildWhatsappLink } from "../lib/config.js";
-import { Icon, Eyebrow, Reveal, useMagnetic } from "./ui.jsx";
+import { Icon, Eyebrow, Reveal, useMagnetic, GoogleG } from "./ui.jsx";
+import { useGoogleReviews, reviewWord } from "../lib/reviews.js";
 import VideoLoop from "./VideoLoop.jsx";
 
 export default function Hero() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const trust = t("hero.trust");
   const wa = buildWhatsappLink({ message: "I'd like to send a photo of my car damage." });
   const magnet = useMagnetic(0.3);
+  const rev = useGoogleReviews();
+  const ratingLabel = rev?.ok && rev.rating ? Number(rev.rating).toFixed(1) : "4.9";
+  const ratingNote =
+    rev?.ok && rev.total
+      ? `${rev.total} ${reviewWord(rev.total, lang)} ${t("testimonials.onGoogle")}`
+      : t("hero.ratingNote");
 
   return (
     <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-28 pb-24 lg:pb-28">
@@ -74,13 +81,14 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={340} className="mt-7 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 backdrop-blur">
+            <GoogleG className="h-5 w-5" />
             <span className="flex text-amber-400">
               {[0, 1, 2, 3, 4].map((i) => (
                 <Icon.star key={i} className="h-4 w-4" />
               ))}
             </span>
             <span className="text-sm text-slate-200">
-              <span className="tabular font-bold text-white">4.9</span> · {t("hero.ratingNote")}
+              <span className="tabular font-bold text-white">{ratingLabel}</span> · {ratingNote}
             </span>
             <span className="hidden h-4 w-px bg-white/15 sm:block" />
             <span className="hidden items-center gap-1.5 text-sm font-medium text-slate-200 sm:inline-flex">

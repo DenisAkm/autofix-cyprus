@@ -1,5 +1,6 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { Reveal, useCountUp } from "./ui.jsx";
+import { useGoogleReviews } from "../lib/reviews.js";
 
 // "500+" → {prefix:"", num:500, suffix:"+", decimals:0}; "24/7" counts to 24 with "/7" suffix
 function parse(v) {
@@ -29,6 +30,9 @@ function Stat({ value, label, divider }) {
 export default function Stats() {
   const { t } = useI18n();
   const stats = t("stats");
+  const rev = useGoogleReviews();
+  // The "★" stat is the customer rating — show the live Google value when available.
+  const liveRating = rev?.ok && rev.rating ? Number(rev.rating).toFixed(1) + "★" : null;
 
   return (
     <div className="relative z-10 mx-auto -mt-16 max-w-6xl px-5 lg:px-8">
@@ -41,7 +45,7 @@ export default function Stats() {
           {stats.map((s, i) => (
             <Stat
               key={i}
-              value={s.value}
+              value={liveRating && s.value.includes("★") ? liveRating : s.value}
               label={s.label}
               divider={`${i < 2 ? "border-b border-white/10 lg:border-b-0" : ""} ${
                 i % 2 === 0 ? "border-r border-white/10 lg:border-r-0" : ""

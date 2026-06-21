@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useI18n } from "../i18n/LanguageContext.jsx";
 import { TESTIMONIALS } from "../data/testimonials.js";
-import { Icon, Reveal } from "./ui.jsx";
+import { Icon, Reveal, GoogleG } from "./ui.jsx";
+import { useGoogleReviews, reviewWord } from "../lib/reviews.js";
 import SectionHeader from "./SectionHeader.jsx";
 
 const AVATAR_GRADIENTS = [
@@ -12,17 +13,6 @@ const AVATAR_GRADIENTS = [
   "from-blue-500 to-indigo-700",
   "from-brand-600 to-sky-700",
 ];
-
-function GoogleG({ className = "h-5 w-5" }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.7-2 5-4.4 6.6v5.5h7.1c4.1-3.8 6.6-9.4 6.6-16.1z" />
-      <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.4l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.500001-3.8-12.2-9H4.5v5.7C8.1 41.1 15.4 46 24 46z" />
-      <path fill="#FBBC05" d="M11.8 28.2c-.4-1.3-.7-2.7-.7-4.2s.3-2.9.7-4.2v-5.7H4.5C3 17.2 2.1 20.5 2.1 24s.9 6.8 2.4 9.9l7.3-5.7z" />
-      <path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.9 4.1 29.9 2 24 2 15.4 2 8.1 6.9 4.5 14.1l7.3 5.7c1.7-5.2 6.5-9 12.2-9z" />
-    </svg>
-  );
-}
 
 function Stars({ n = 5, className = "h-3.5 w-3.5" }) {
   return (
@@ -93,21 +83,9 @@ function Row({ items, reverse, offset = 0 }) {
 }
 
 export default function Testimonials() {
-  const { t } = useI18n();
-  const [live, setLive] = useState(null);
-
-  useEffect(() => {
-    let alive = true;
-    fetch("/api/reviews")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => {
-        if (alive && d && d.ok && Array.isArray(d.reviews) && d.reviews.length) setLive(d);
-      })
-      .catch(() => {});
-    return () => {
-      alive = false;
-    };
-  }, []);
+  const { t, lang } = useI18n();
+  const data = useGoogleReviews();
+  const live = data?.ok && data.reviews?.length ? data : null;
 
   // Unify live Google reviews and the static fallback into one card shape.
   const items = live
@@ -132,7 +110,9 @@ export default function Testimonials() {
               <span className="tabular text-sm font-bold text-ink-900">{ratingLabel}</span>
               <Stars n={Math.round(Number(ratingLabel))} className="h-4 w-4" />
               <span className="text-sm text-slate-500">
-                {live?.total ? `${live.total} ${t("testimonials.onGoogle")}` : t("testimonials.googleNote")}
+                {live?.total
+                  ? `${live.total} ${reviewWord(live.total, lang)} ${t("testimonials.onGoogle")}`
+                  : t("testimonials.googleNote")}
               </span>
               {live?.url && (
                 <a

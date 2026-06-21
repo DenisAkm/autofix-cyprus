@@ -100,7 +100,7 @@ export const translations = {
       title: "What our customers say",
       subtitle: "Trusted by hundreds of drivers across Cyprus.",
       googleNote: "4.9 / 5 average rating",
-      onGoogle: "reviews on Google",
+      onGoogle: "on Google",
       seeAll: "See all on Google",
     },
     faq: {
@@ -255,7 +255,7 @@ export const translations = {
       title: "Отзывы наших клиентов",
       subtitle: "Нам доверяют сотни водителей по всему Кипру.",
       googleNote: "средняя оценка 4.9 / 5",
-      onGoogle: "отзывов в Google",
+      onGoogle: "в Google",
       seeAll: "Все отзывы в Google",
     },
     faq: {
