@@ -5,18 +5,14 @@ import { Icon } from "./ui.jsx";
 
 export function Logo({ light = false }) {
   return (
-    <a href="#top" className="group flex items-center gap-2.5" aria-label="AutoFix Cyprus — home">
-      <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 shadow-lg shadow-brand-600/30 transition-transform group-hover:scale-105">
-        <Icon.wrench className="h-5 w-5 text-white" />
-      </span>
-      <span className="leading-none">
-        <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink-900"}`}>
-          AutoFix
-        </span>
-        <span className={`block text-[10px] font-semibold tracking-[0.32em] ${light ? "text-brand-200" : "text-brand-600"}`}>
-          CYPRUS
-        </span>
-      </span>
+    <a href="#top" className="group flex items-center" aria-label="AutoFix Cyprus — home">
+      <img
+        src={light ? "/img/logo-light.png" : "/img/logo-dark.png"}
+        alt="AutoFix Cyprus"
+        width="729"
+        height="168"
+        className="h-9 w-auto transition-transform group-hover:scale-[1.03] sm:h-10"
+      />
     </a>
   );
 }

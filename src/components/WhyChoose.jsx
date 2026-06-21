@@ -37,7 +37,7 @@ export default function WhyChoose() {
         {/* Copy */}
         <div>
           <Reveal>
-            <Eyebrow>{t("nav.contact")}</Eyebrow>
+            <Eyebrow>{t("why.eyebrow")}</Eyebrow>
           </Reveal>
           <Reveal as="h2" variant="right" delay={60} className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
             {t("why.title")}

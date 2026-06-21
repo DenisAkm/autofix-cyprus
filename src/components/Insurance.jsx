@@ -10,7 +10,7 @@ const POINT_ICONS = [Icon.shield, Icon.file, Icon.clock];
 function InsurerChip({ name, logo }) {
   const [broken, setBroken] = useState(false);
   return (
-    <div className="mx-2.5 flex h-14 shrink-0 items-center justify-center rounded-2xl border border-slate-100 bg-white/80 px-6 text-slate-400 shadow-soft transition-colors duration-300 hover:text-brand-700">
+    <div className="mx-2.5 flex h-14 shrink-0 items-center justify-center rounded-2xl border border-slate-100 bg-white/80 px-6 text-slate-500 shadow-soft transition-colors duration-300 hover:text-brand-700">
       {logo && !broken ? (
         <img src={logo} alt={name} loading="lazy" onError={() => setBroken(true)} className="h-7 max-w-[150px] object-contain" />
       ) : (

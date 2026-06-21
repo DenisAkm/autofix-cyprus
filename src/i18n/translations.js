@@ -90,6 +90,7 @@ export const translations = {
     },
     why: {
       title: "Why choose AutoFix Cyprus?",
+      eyebrow: "Why us",
       warrantyUnit: "years",
       items: [
         { title: "No hidden charges", desc: "Transparent pricing with a detailed quote before any work begins. What we quote is what you pay." },
@@ -248,6 +249,7 @@ export const translations = {
     },
     why: {
       title: "Почему выбирают AutoFix Cyprus?",
+      eyebrow: "Почему мы",
       warrantyUnit: "года",
       items: [
         { title: "Никаких скрытых платежей", desc: "Прозрачные цены и детальная смета до начала работ. Сколько озвучили — столько и платите." },
