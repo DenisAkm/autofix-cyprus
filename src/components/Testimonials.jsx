@@ -61,7 +61,7 @@ function Card({ item, idx }) {
           </div>
           <div className="flex items-center gap-2">
             <Stars n={item.rating} />
-            {item.sub && <span className="truncate text-xs text-slate-400">{item.sub}</span>}
+            {item.sub && <span className="truncate text-xs text-slate-500">{item.sub}</span>}
           </div>
         </div>
       </div>

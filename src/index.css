@@ -59,6 +59,19 @@ body {
   color: var(--color-brand-900);
 }
 
+/* Visible keyboard focus (a11y). Mouse clicks don't trigger :focus-visible. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* On dark sections, use a light focus ring for contrast */
+.mesh-dark :focus-visible,
+.bg-ink-950 :focus-visible,
+[class*="ink-950"] :focus-visible {
+  outline-color: #fff;
+}
+
 /* Refined scrollbar */
 ::-webkit-scrollbar { width: 11px; height: 11px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -242,8 +255,8 @@ body {
   from { transform: translateX(-50%); }
   to { transform: translateX(0); }
 }
-.anim-marquee { animation: marquee 38s linear infinite; }
-.anim-marquee-rev { animation: marquee-rev 44s linear infinite; }
+.anim-marquee { animation: marquee 64s linear infinite; }
+.anim-marquee-rev { animation: marquee-rev 74s linear infinite; }
 .marquee-track:hover .anim-marquee,
 .marquee-track:hover .anim-marquee-rev { animation-play-state: paused; }
 

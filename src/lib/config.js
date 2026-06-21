@@ -10,6 +10,10 @@ export const CONTACT = {
   emailHref: "mailto:support@autofixcyprus.com",
   instagram: "https://www.instagram.com/autofixcyprus/",
   facebook: "https://www.facebook.com/people/AutoFix-Cyprus/61578717991640/",
+  address: "Konstantinou & Euripidi Avenue 25, Shop 4, Cyprus",
+  mapLink: "https://maps.google.com/?cid=9240733620121607118",
+  // Keyless Google Maps embed (pin at the shop coordinates).
+  mapEmbed: "https://maps.google.com/maps?q=34.6557878,32.9683562&z=16&output=embed",
 };
 
 export const HOURS = {

@@ -99,9 +99,19 @@ export default function Footer() {
                 <Icon.clock className="h-4 w-4 text-brand-400" />
                 {t("footer.hours")}
               </li>
-              <li className="flex items-center gap-2.5 text-slate-400">
-                <Icon.pin className="h-4 w-4 text-brand-400" />
-                {t("footer.area")}
+              <li>
+                <a
+                  href={CONTACT.mapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-2.5 text-slate-400 transition hover:text-brand-300"
+                >
+                  <Icon.pin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                  <span>
+                    {CONTACT.address}
+                    <span className="block text-xs text-slate-500">{t("footer.area")}</span>
+                  </span>
+                </a>
               </li>
             </ul>
           </div>

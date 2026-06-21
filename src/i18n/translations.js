@@ -74,6 +74,7 @@ export const translations = {
       subtitle: "Actual cars our team restored. Left: the damage. Right: the finished result.",
       before: "Before",
       after: "After",
+      dragHint: "Drag the slider to compare before & after",
       items: [
         { img: "/img/ba-front.jpg", tag: "Accident repair", title: "Front bumper repair", desc: "Complete restoration of front-end collision damage with an accurate paint match." },
         { img: "/img/ba-rear.jpg", tag: "Bodywork & paint", title: "Rear bumper restoration", desc: "Full repair of rear-end damage with seamless paint restoration." },
@@ -229,6 +230,7 @@ export const translations = {
       subtitle: "Настоящие машины, восстановленные нашей командой. Слева — повреждения, справа — результат.",
       before: "До",
       after: "После",
+      dragHint: "Перетащите ползунок, чтобы сравнить «до» и «после»",
       items: [
         { img: "/img/ba-front.jpg", tag: "После ДТП", title: "Ремонт переднего бампера", desc: "Полное восстановление повреждений передней части с точным подбором краски." },
         { img: "/img/ba-rear.jpg", tag: "Кузов и покраска", title: "Восстановление заднего бампера", desc: "Полный ремонт повреждений задней части с бесшовной покраской." },

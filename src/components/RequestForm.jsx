@@ -81,12 +81,26 @@ export default function RequestForm() {
                     <span className="block text-xs text-emerald-300">{t("footer.emergency")}</span>
                   </span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                <a href={CONTACT.mapLink} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.pin className="h-5 w-5" />
                   </span>
-                  <span className="font-semibold">{t("footer.area")}</span>
-                </div>
+                  <span>
+                    <span className="block font-semibold">{CONTACT.address}</span>
+                    <span className="block text-xs text-slate-400">{t("footer.area")}</span>
+                  </span>
+                </a>
+              </div>
+
+              {/* Map */}
+              <div className="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/15">
+                <iframe
+                  title="AutoFix Cyprus location on Google Maps"
+                  src={CONTACT.mapEmbed}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="block h-44 w-full"
+                />
               </div>
 
               <a
