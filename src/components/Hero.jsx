@@ -17,7 +17,7 @@ export default function Hero() {
       : t("hero.ratingNote");
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink-950 pt-28 pb-24 lg:pb-28">
+    <section id="top" className="relative flex min-h-[90svh] items-center overflow-hidden bg-ink-950 pt-28 pb-28 lg:pb-32">
       {/* Seamless looping background video (mirrored so the technician sits on the open right side) */}
       <VideoLoop src="/video/hero.mp4?v=2" poster="/img/hero-poster.jpg?v=2" mirror className="absolute inset-0" />
 

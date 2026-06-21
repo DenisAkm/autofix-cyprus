@@ -40,8 +40,8 @@ export const translations = {
       { value: "15+", label: "Years experience" },
     ],
     trust: {
-      title: "Why drivers trust AutoFix Cyprus",
-      subtitle: "From seamless accident handling to reliable repairs — we earn trust at every step.",
+      title: "Licensed, insured & guaranteed",
+      subtitle: "Certified professionals and written guarantees — from the first call to the finished car.",
       items: [
         { title: "Fully licensed", desc: "Certified, insured professionals with all the required permits." },
         { title: "Fast response", desc: "We respond within 1 hour and can start work the same day." },
@@ -198,8 +198,8 @@ export const translations = {
       { value: "15+", label: "Лет опыта" },
     ],
     trust: {
-      title: "Почему водители доверяют AutoFix Cyprus",
-      subtitle: "От аккуратного ведения страхового случая до надёжного ремонта — мы оправдываем доверие на каждом шаге.",
+      title: "Лицензия, страховка и гарантия",
+      subtitle: "Сертифицированные специалисты и письменные гарантии — от первого звонка до готовой машины.",
       items: [
         { title: "Полная лицензия", desc: "Сертифицированные застрахованные специалисты со всеми необходимыми разрешениями." },
         { title: "Быстрый отклик", desc: "Отвечаем в течение 1 часа и можем начать работу в тот же день." },

@@ -10,11 +10,14 @@ const reduced = () =>
 const canHover = () =>
   typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
 
-/* Count-up: animates 0→target once the element scrolls into view */
+/* Count-up: animates to target when scrolled into view, and re-animates if the
+   target later changes (e.g. live Google rating arrives after the fallback). */
 export function useCountUp(target, { duration = 1700, decimals = 0 } = {}) {
   const ref = useRef(null);
   const [val, setVal] = useState(0);
-  const ran = useRef(false);
+  const valRef = useRef(0);
+  const seen = useRef(false);
+  valRef.current = val;
 
   useEffect(() => {
     const el = ref.current;
@@ -23,25 +26,39 @@ export function useCountUp(target, { duration = 1700, decimals = 0 } = {}) {
       setVal(target);
       return;
     }
+    let raf;
+    const animate = (from) => {
+      const t0 = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        setVal(from + (target - from) * eased);
+        if (p < 1) raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    // Already in view (target changed, e.g. live data) → tick from current value.
+    if (seen.current) {
+      animate(valRef.current);
+      return () => cancelAnimationFrame(raf);
+    }
+
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting && !ran.current) {
-          ran.current = true;
-          const t0 = performance.now();
-          const tick = (now) => {
-            const p = Math.min(1, (now - t0) / duration);
-            const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
-            setVal(target * eased);
-            if (p < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
+        if (e.isIntersecting) {
+          seen.current = true;
+          animate(0);
           io.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3, rootMargin: "0px 0px -10% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(raf);
+    };
   }, [target, duration]);
 
   return [ref, decimals ? val.toFixed(decimals) : Math.round(val)];
