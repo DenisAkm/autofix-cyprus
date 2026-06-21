@@ -2,8 +2,16 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "autofix-cyprus",
   "compatibility_date": "2025-09-01",
+  "main": "worker/index.js",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
+  },
+  "vars": {
+    // Public — identifies the business on Google Maps (safe to commit).
+    "GOOGLE_PLACE_ID": "ChIJu-1AJ-Mz5xQRzptbm0SuPYA"
   }
+  // Secret (NOT committed): set with `wrangler secret put GOOGLE_PLACES_API_KEY`.
+  // Local dev reads it from .dev.vars (gitignored).
 }
