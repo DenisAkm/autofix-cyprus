@@ -56,25 +56,25 @@ export default function RequestForm() {
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.phone className="h-5 w-5" />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-xs text-slate-400">{t("nav.callNow")}</span>
-                    <span className="block font-semibold">{CONTACT.phoneDisplay}</span>
+                    <span className="block break-words font-semibold">{CONTACT.phoneDisplay}</span>
                   </span>
                 </a>
                 <a href={CONTACT.emailHref} className="group flex items-center gap-4">
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.mail className="h-5 w-5" />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-xs text-slate-400">Email</span>
-                    <span className="block font-semibold">{CONTACT.email}</span>
+                    <span className="block break-words font-semibold">{CONTACT.email}</span>
                   </span>
                 </a>
                 <div className="flex items-center gap-4">
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15">
                     <Icon.clock className="h-5 w-5" />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block font-semibold">{t("footer.hours")}</span>
                     <span className="block text-xs text-emerald-300">{t("footer.emergency")}</span>
                   </span>
@@ -83,8 +83,8 @@ export default function RequestForm() {
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.pin className="h-5 w-5" />
                   </span>
-                  <span>
-                    <span className="block font-semibold">{CONTACT.address}</span>
+                  <span className="min-w-0">
+                    <span className="block break-words font-semibold">{CONTACT.address}</span>
                     <span className="block text-xs text-slate-400">{t("footer.area")}</span>
                   </span>
                 </a>
