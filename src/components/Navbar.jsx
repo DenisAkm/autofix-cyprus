@@ -134,7 +134,7 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition ${
+              className={`relative whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium transition ${
                 light
                   ? `text-white/85 hover:bg-white/10 hover:text-white ${active === l.id ? "text-white" : ""}`
                   : `hover:bg-slate-100/70 hover:text-brand-700 ${active === l.id ? "text-brand-700" : "text-slate-600"}`

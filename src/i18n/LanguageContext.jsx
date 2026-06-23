@@ -8,7 +8,9 @@ function detectInitial() {
   const saved = localStorage.getItem("afc-lang");
   if (saved && translations[saved]) return saved;
   const nav = (navigator.language || "en").toLowerCase();
-  if (nav.startsWith("ru")) return "ru";
+  for (const code of ["ru", "el", "de", "it", "es", "fr"]) {
+    if (nav.startsWith(code)) return code;
+  }
   return "en";
 }
 

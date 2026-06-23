@@ -6,7 +6,7 @@
 // To upgrade the text wordmarks to real logos later: drop an SVG/PNG into
 // public/img/insurers/ and add `logo: "/img/insurers/<file>"` to that entry.
 export const INSURERS = [
-  { name: "Trust Insurance" },
+  { name: "Trust Insurance", logo: "/img/insurers/trust.svg" },
   { name: "General Insurance of Cyprus", logo: "/img/insurers/gic.png" },
   { name: "Pancyprian Insurance" },
   { name: "CNP Asfalistiki" },
