@@ -13,7 +13,7 @@ export const INSURERS = [
   { name: "Atlantic Insurance", logo: "/img/insurers/atlantic.svg" },
   { name: "Cosmos Insurance", logo: "/img/insurers/cosmos.svg" },
   { name: "Minerva Insurance", logo: "/img/insurers/minerva.svg" },
-  { name: "Anytime" },
+  { name: "Anytime", logo: "/img/insurers/anytime.svg" },
   { name: "Gan Direct", logo: "/img/insurers/gandirect.png" },
   { name: "Allianz", logo: "/img/insurers/allianz.svg" },
   { name: "AIG", logo: "/img/insurers/aig.svg" },
