@@ -7,18 +7,18 @@ import SectionHeader from "./SectionHeader.jsx";
 
 const AVATAR_GRADIENTS = [
   "from-brand-500 to-brand-700",
-  "from-sky-500 to-blue-700",
-  "from-indigo-500 to-brand-700",
-  "from-cyan-500 to-brand-600",
-  "from-blue-500 to-indigo-700",
-  "from-brand-600 to-sky-700",
+  "from-brand-700 to-ink-900",
+  "from-slate-500 to-slate-700",
+  "from-brand-600 to-brand-800",
+  "from-slate-600 to-ink-800",
+  "from-brand-500 to-slate-700",
 ];
 
 function Stars({ n = 5, className = "h-3.5 w-3.5" }) {
   return (
     <span className="flex">
       {[0, 1, 2, 3, 4].map((i) => (
-        <Icon.star key={i} className={`${className} ${i < n ? "text-amber-400" : "text-slate-200"}`} />
+        <Icon.star key={i} className={`${className} ${i < n ? "text-marigold-400" : "text-slate-300"}`} />
       ))}
     </span>
   );
@@ -51,12 +51,12 @@ function Avatar({ name, photo, idx }) {
 
 function Card({ item, idx }) {
   return (
-    <figure className="mx-2.5 flex w-[320px] shrink-0 flex-col rounded-3xl border border-slate-100 bg-white p-6 shadow-soft transition-shadow hover:shadow-[var(--shadow-lift)] sm:w-[380px]">
+    <figure className="paper mx-2.5 flex w-[320px] shrink-0 flex-col rounded-xl p-6 transition-shadow hover:shadow-[var(--shadow-lift)] sm:w-[380px]">
       <div className="flex items-center gap-3">
         <Avatar name={item.name} photo={item.photo} idx={idx} />
         <div className="min-w-0">
           <div className="flex items-center gap-1.5">
-            <span className="truncate text-sm font-bold text-ink-900">{item.name}</span>
+            <span className="truncate text-sm font-semibold text-ink-950">{item.name}</span>
             <GoogleG className="h-3.5 w-3.5 shrink-0" />
           </div>
           <div className="flex items-center gap-2">
@@ -98,42 +98,41 @@ export default function Testimonials() {
   const row2 = twoRows ? items.slice(Math.ceil(items.length / 2)) : [];
 
   return (
-    <section className="relative overflow-hidden bg-slate-50/70 py-20 lg:py-28">
-      <div className="relative">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <SectionHeader eyebrow={t("testimonials.subtitle")} title={t("testimonials.title")} />
+    <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
+      <div className="seam-x absolute inset-x-0 top-0" />
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <SectionHeader eyebrow={t("testimonials.subtitle")} title={t("testimonials.title")} />
 
-          {/* Google rating summary */}
-          <Reveal className="mt-6 flex justify-center">
-            <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-full bg-white px-5 py-2.5 shadow-soft ring-1 ring-slate-100">
-              <GoogleG className="h-5 w-5" />
-              <span className="tabular text-sm font-bold text-ink-900">{ratingLabel}</span>
-              <Stars n={Math.round(Number(ratingLabel))} className="h-4 w-4" />
-              <span className="text-sm text-slate-500">
-                {live?.total
-                  ? `${live.total} ${reviewWord(live.total, lang)} ${t("testimonials.onGoogle")}`
-                  : t("testimonials.googleNote")}
-              </span>
-              {live?.url && (
-                <a
-                  href={live.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 border-l border-slate-200 pl-3 text-sm font-semibold text-brand-600 hover:text-brand-700"
-                >
-                  {t("testimonials.seeAll")}
-                  <Icon.arrowRight className="h-3.5 w-3.5" />
-                </a>
-              )}
-            </div>
-          </Reveal>
-        </div>
-
-        <Reveal delay={120} className="mt-12 space-y-4">
-          <Row items={row1} offset={0} />
-          {twoRows && <Row items={row2} reverse offset={row1.length} />}
+        {/* Google rating summary */}
+        <Reveal className="mt-6 flex justify-center">
+          <div className="paper inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-full px-5 py-2.5">
+            <GoogleG className="h-5 w-5" />
+            <span className="tabular text-sm font-bold text-ink-950">{ratingLabel}</span>
+            <Stars n={Math.round(Number(ratingLabel))} className="h-4 w-4" />
+            <span className="text-sm text-slate-500">
+              {live?.total
+                ? `${live.total} ${reviewWord(live.total, lang)} ${t("testimonials.onGoogle")}`
+                : t("testimonials.googleNote")}
+            </span>
+            {live?.url && (
+              <a
+                href={live.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 border-l border-slate-200 pl-3 text-sm font-semibold text-brand-600 hover:text-brand-700"
+              >
+                {t("testimonials.seeAll")}
+                <Icon.arrowRight className="h-3.5 w-3.5" />
+              </a>
+            )}
+          </div>
         </Reveal>
       </div>
+
+      <Reveal delay={120} className="mt-12 space-y-4">
+        <Row items={row1} offset={0} />
+        {twoRows && <Row items={row2} reverse offset={row1.length} />}
+      </Reveal>
     </section>
   );
 }

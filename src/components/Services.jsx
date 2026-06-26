@@ -1,34 +1,8 @@
 import { useI18n } from "../i18n/LanguageContext.jsx";
-import { Icon, Reveal, useTilt } from "./ui.jsx";
+import { Icon, Reveal } from "./ui.jsx";
 import SectionHeader from "./SectionHeader.jsx";
 
 const ICONS = [Icon.car, Icon.paint, Icon.file, Icon.truck, Icon.shield, Icon.wrench];
-
-function ServiceCard({ item, I, delay, requestLabel }) {
-  const tilt = useTilt({ max: 6, scale: 1.01 });
-  return (
-    <Reveal variant="scale" delay={delay}>
-      <div
-        ref={tilt}
-        className="group relative h-full overflow-hidden rounded-3xl border border-slate-100 bg-white p-7 shadow-soft transition-[box-shadow,border-color] duration-300 hover:border-brand-200 hover:shadow-[var(--shadow-lift)]"
-      >
-        <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-500/0 blur-2xl transition-all duration-500 group-hover:bg-brand-500/20" />
-        <div className="relative grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 text-white shadow-lg shadow-brand-600/25 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
-          <I className="h-7 w-7" />
-        </div>
-        <h3 className="relative mt-5 text-lg font-bold text-ink-900">{item.title}</h3>
-        <p className="relative mt-2 text-[15px] leading-relaxed text-slate-600">{item.desc}</p>
-        <a
-          href="#contact"
-          className="relative mt-5 inline-flex translate-y-1 items-center gap-1.5 text-sm font-semibold text-brand-600 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-        >
-          {requestLabel}
-          <Icon.arrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </a>
-      </div>
-    </Reveal>
-  );
-}
 
 export default function Services() {
   const { t } = useI18n();
@@ -38,11 +12,31 @@ export default function Services() {
     <section id="services" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
       <SectionHeader eyebrow={t("nav.services")} title={t("services.title")} subtitle={t("services.subtitle")} />
 
-      <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((item, i) => (
-          <ServiceCard key={i} item={item} I={ICONS[i]} delay={(i % 3) * 90} requestLabel={t("nav.request")} />
-        ))}
-      </div>
+      {/* Job sheet — numbered work order rows on a single paper panel */}
+      <Reveal variant="scale" className="paper mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl">
+        <div className="divide-y divide-slate-200">
+          {items.map((item, i) => {
+            const I = ICONS[i];
+            return (
+              <a
+                key={i}
+                href="#contact"
+                className="group grid grid-cols-[2rem_1fr_auto] items-center gap-4 px-5 py-5 transition-colors hover:bg-slate-50 sm:grid-cols-[2.5rem_1fr_auto] sm:gap-6 sm:px-8 sm:py-6"
+              >
+                <span className="spec text-sm text-brand-600">{String(i + 1).padStart(2, "0")}</span>
+                <div className="min-w-0">
+                  <h3 className="flex items-center gap-2.5 text-[1.05rem] font-semibold text-ink-950">
+                    <I className="h-5 w-5 shrink-0 text-brand-600" />
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-[14.5px] leading-relaxed text-slate-600">{item.desc}</p>
+                </div>
+                <Icon.arrowRight className="h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-brand-600" />
+              </a>
+            );
+          })}
+        </div>
+      </Reveal>
     </section>
   );
 }

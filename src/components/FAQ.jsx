@@ -7,15 +7,13 @@ import SectionHeader from "./SectionHeader.jsx";
 function Item({ q, a, open, onToggle }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border transition-all duration-300 ${
-        open
-          ? "border-brand-200 bg-brand-50/40 shadow-soft"
-          : "border-slate-200 bg-white hover:border-brand-100 hover:bg-slate-50/70"
+      className={`relative overflow-hidden rounded-xl border transition-all duration-300 ${
+        open ? "border-brand-200 bg-white shadow-soft" : "border-slate-200 bg-white hover:border-brand-200"
       }`}
     >
       {/* left accent bar grows when open */}
       <span
-        className={`absolute left-0 top-1/2 w-1 -translate-y-1/2 rounded-r-full bg-brand-600 transition-all duration-300 ${
+        className={`absolute left-0 top-1/2 w-1 -translate-y-1/2 bg-marigold-400 transition-all duration-300 ${
           open ? "h-2/3" : "h-0"
         }`}
       />
@@ -24,7 +22,7 @@ function Item({ q, a, open, onToggle }) {
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
         aria-expanded={open}
       >
-        <span className={`text-[15px] font-semibold transition-colors sm:text-base ${open ? "text-brand-800" : "text-ink-900"}`}>
+        <span className={`text-[15px] font-semibold transition-colors sm:text-base ${open ? "text-brand-800" : "text-ink-950"}`}>
           {q}
         </span>
         <span
@@ -61,15 +59,15 @@ export default function FAQ() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeader eyebrow={t("nav.faq")} title={t("faq.title")} subtitle={t("faq.subtitle")} center={false} />
 
-          <Reveal className="mt-8 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 p-6 text-white shadow-xl shadow-brand-600/20">
-            <h3 className="text-lg font-bold">{t("faq.stillTitle")}</h3>
-            <p className="mt-1 text-sm text-brand-100">{t("faq.stillDesc")}</p>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+          <Reveal className="on-dark grain relative mt-8 overflow-hidden rounded-2xl bg-brand-700 p-6 text-white">
+            <h3 className="relative text-lg font-semibold">{t("faq.stillTitle")}</h3>
+            <p className="relative mt-1 text-sm text-brand-100">{t("faq.stillDesc")}</p>
+            <div className="relative mt-4 flex flex-wrap gap-2.5">
               <a
                 href={CONTACT.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-brand-800 transition hover:bg-brand-50"
               >
                 <Icon.whatsapp className="h-4 w-4 text-emerald-500" />
                 WhatsApp

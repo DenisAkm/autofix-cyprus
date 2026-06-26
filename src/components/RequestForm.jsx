@@ -6,7 +6,7 @@ import { Icon, Eyebrow, Reveal } from "./ui.jsx";
 function Field({ label, required, children }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-semibold text-ink-800">
+      <span className="mb-1.5 block text-sm font-semibold text-ink-900">
         {label}
         {required && <span className="text-red-500"> *</span>}
       </span>
@@ -16,7 +16,7 @@ function Field({ label, required, children }) {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[15px] text-ink-900 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100";
+  "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-[15px] text-ink-900 outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-100";
 
 export default function RequestForm() {
   const { t } = useI18n();
@@ -40,38 +40,41 @@ export default function RequestForm() {
 
   return (
     <section id="contact" className="relative overflow-hidden py-20 lg:py-28">
-      <div className="mesh pointer-events-none absolute inset-0" />
+      <div className="seam-x absolute inset-x-0 top-0" />
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
           {/* Info panel */}
-          <Reveal className="relative overflow-hidden rounded-[2rem] bg-ink-950 p-8 text-white lg:p-10">
-            <div className="mesh-dark pointer-events-none absolute inset-0" />
+          <Reveal className="on-dark grain relative overflow-hidden rounded-2xl bg-ink-950 p-8 text-white lg:p-10">
+            <div
+              className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full"
+              style={{ background: "radial-gradient(closest-side, rgba(18,112,121,.32), transparent)" }}
+            />
             <div className="relative">
               <Eyebrow dark>{t("nav.contact")}</Eyebrow>
-              <h2 className="mt-4 text-3xl font-extrabold tracking-tight">{t("form.title")}</h2>
+              <h2 className="mt-4 text-3xl font-bold tracking-tight">{t("form.title")}</h2>
               <p className="mt-3 text-[15px] leading-relaxed text-slate-300">{t("form.subtitle")}</p>
 
               <div className="mt-8 space-y-4">
                 <a href={CONTACT.phoneHref} className="group flex items-center gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.phone className="h-5 w-5" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-xs text-slate-400">{t("nav.callNow")}</span>
+                    <span className="spec block text-[0.6rem] text-slate-400">{t("nav.callNow")}</span>
                     <span className="block break-words font-semibold">{CONTACT.phoneDisplay}</span>
                   </span>
                 </a>
                 <a href={CONTACT.emailHref} className="group flex items-center gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.mail className="h-5 w-5" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-xs text-slate-400">Email</span>
+                    <span className="spec block text-[0.6rem] text-slate-400">Email</span>
                     <span className="block break-words font-semibold">{CONTACT.email}</span>
                   </span>
                 </a>
                 <div className="flex items-center gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-white/10 ring-1 ring-white/15">
                     <Icon.clock className="h-5 w-5" />
                   </span>
                   <span className="min-w-0">
@@ -80,7 +83,7 @@ export default function RequestForm() {
                   </span>
                 </div>
                 <a href={CONTACT.mapLink} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
+                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-white/10 ring-1 ring-white/15 transition group-hover:bg-brand-600">
                     <Icon.pin className="h-5 w-5" />
                   </span>
                   <span className="min-w-0">
@@ -91,7 +94,7 @@ export default function RequestForm() {
               </div>
 
               {/* Map */}
-              <div className="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/15">
+              <div className="mt-6 overflow-hidden rounded-lg ring-1 ring-white/15">
                 <iframe
                   title="AutoFix Cyprus location on Google Maps"
                   src={CONTACT.mapEmbed}
@@ -114,13 +117,13 @@ export default function RequestForm() {
           </Reveal>
 
           {/* Form / success */}
-          <Reveal delay={100} className="rounded-[2rem] border border-slate-100 bg-white p-7 shadow-xl shadow-ink-900/5 lg:p-10">
+          <Reveal delay={100} className="paper rounded-2xl p-7 shadow-soft lg:p-10">
             {sent ? (
               <div className="flex h-full flex-col items-center justify-center py-10 text-center">
                 <span className="grid h-20 w-20 place-items-center rounded-full bg-emerald-100 text-emerald-600">
                   <Icon.whatsapp className="h-10 w-10" />
                 </span>
-                <h3 className="mt-6 text-2xl font-extrabold text-ink-900">{t("form.successTitle")}</h3>
+                <h3 className="mt-6 text-2xl font-bold text-ink-950">{t("form.successTitle")}</h3>
                 <p className="mt-2 max-w-sm text-slate-600">{t("form.successDesc")}</p>
                 <button
                   onClick={() => {
@@ -147,7 +150,7 @@ export default function RequestForm() {
                   </Field>
                   <Field label={t("form.phone")} required>
                     <div
-                      className={`flex overflow-hidden rounded-xl border bg-white transition focus-within:border-brand-400 focus-within:ring-4 focus-within:ring-brand-100 ${
+                      className={`flex overflow-hidden rounded-lg border bg-white transition focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-100 ${
                         errors.phone ? "border-red-300 ring-4 ring-red-50" : "border-slate-200"
                       }`}
                     >
@@ -207,26 +210,26 @@ export default function RequestForm() {
                 </Field>
 
                 {/* Photos — clarified: attached in the WhatsApp chat after sending (no fake upload) */}
-                <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
+                <div className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
                     <Icon.camera className="h-5 w-5" />
                   </span>
                   <div>
-                    <div className="text-sm font-semibold text-ink-900">{t("form.photoTitle")}</div>
+                    <div className="text-sm font-semibold text-ink-950">{t("form.photoTitle")}</div>
                     <p className="mt-0.5 text-[13px] leading-relaxed text-slate-500">{t("form.photoNote")}</p>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-shine flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-xl shadow-brand-600/30 transition hover:bg-brand-700"
+                  className="btn-shine flex w-full items-center justify-center gap-2 rounded-full bg-marigold-400 px-6 py-4 text-base font-semibold text-ink-950 shadow-xl shadow-marigold-400/25 transition hover:bg-marigold-300"
                 >
                   <Icon.whatsapp className="h-5 w-5" />
                   {t("form.submit")}
                 </button>
                 <p className="text-center text-sm text-slate-500">
                   {t("form.orCall")}{" "}
-                  <a href={CONTACT.phoneHref} className="font-semibold text-brand-600 hover:underline">
+                  <a href={CONTACT.phoneHref} className="font-semibold text-brand-700 hover:underline">
                     {CONTACT.phoneDisplay}
                   </a>
                 </p>

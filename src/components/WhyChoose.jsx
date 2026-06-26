@@ -10,7 +10,7 @@ export default function WhyChoose() {
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Image */}
         <Reveal variant="left" className="relative order-last lg:order-first">
-          <div className="overflow-hidden rounded-[2rem] shadow-2xl shadow-ink-900/20 ring-1 ring-slate-100">
+          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-ink-950/20 ring-1 ring-slate-200">
             <img
               src="/img/accent-tools.jpg"
               alt="Quality car repair work delivered by AutoFix Cyprus"
@@ -19,17 +19,19 @@ export default function WhyChoose() {
             />
           </div>
           {/* floating stat */}
-          <div className="glass lit anim-float absolute -bottom-6 right-6 rounded-2xl px-5 py-4 text-center">
-            <div className="text-3xl font-extrabold text-gradient">500+</div>
-            <div className="text-xs font-medium text-slate-500">{t("stats")[0].label}</div>
+          <div className="paper anim-float absolute -bottom-6 right-6 rounded-xl px-5 py-4 text-center shadow-[var(--shadow-lift)]">
+            <div className="text-3xl font-bold tracking-tight text-ink-950">
+              500<span className="text-marigold-500">+</span>
+            </div>
+            <div className="spec mt-1 text-[0.58rem] text-slate-500">{t("stats")[0].label}</div>
           </div>
-          <div className="glass lit anim-float-slow absolute -top-5 -left-3 hidden items-center gap-2.5 rounded-2xl px-4 py-3 sm:flex">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-white">
+          <div className="paper anim-float-slow absolute -top-5 -left-3 hidden items-center gap-2.5 rounded-xl px-4 py-3 shadow-[var(--shadow-lift)] sm:flex">
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 text-white">
               <Icon.badge className="h-5 w-5" />
             </span>
             <div className="pr-1 leading-tight">
-              <div className="text-sm font-bold text-ink-900">3 {t("why.warrantyUnit")}</div>
-              <span className="block text-xs font-medium text-slate-500">{t("trust.items")[3].title}</span>
+              <div className="text-sm font-bold text-ink-950">3 {t("why.warrantyUnit")}</div>
+              <span className="spec block text-[0.55rem] text-slate-500">{t("trust.items")[3].title}</span>
             </div>
           </div>
         </Reveal>
@@ -39,17 +41,17 @@ export default function WhyChoose() {
           <Reveal>
             <Eyebrow>{t("why.eyebrow")}</Eyebrow>
           </Reveal>
-          <Reveal as="h2" variant="right" delay={60} className="mt-4 text-3xl font-extrabold tracking-tight text-ink-900 sm:text-4xl">
+          <Reveal as="h2" variant="right" delay={60} className="mt-4 text-[1.9rem] font-bold leading-[1.06] tracking-[-0.02em] text-ink-950 sm:text-[2.5rem]">
             {t("why.title")}
           </Reveal>
           <div className="mt-8 space-y-5">
             {items.map((item, i) => (
               <Reveal key={i} delay={i * 90} className="flex gap-4">
-                <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700 ring-1 ring-brand-100">
                   <Icon.check className="h-5 w-5" stroke={2.5} />
                 </span>
                 <div>
-                  <h3 className="text-base font-bold text-ink-900">{item.title}</h3>
+                  <h3 className="text-base font-semibold text-ink-950">{item.title}</h3>
                   <p className="mt-1 text-[15px] leading-relaxed text-slate-600">{item.desc}</p>
                 </div>
               </Reveal>

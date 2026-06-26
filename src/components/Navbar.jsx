@@ -5,14 +5,20 @@ import { Icon } from "./ui.jsx";
 
 export function Logo({ light = false }) {
   return (
-    <a href="#top" className="group flex items-center" aria-label="AutoFix Cyprus — home">
-      <img
-        src={light ? "/img/logo-light.png" : "/img/logo-dark.png"}
-        alt="AutoFix Cyprus"
-        width="729"
-        height="168"
-        className="h-9 w-auto transition-transform group-hover:scale-[1.03] sm:h-10"
-      />
+    <a
+      href="#top"
+      aria-label="AutoFix Cyprus — home"
+      className="group inline-flex flex-col leading-none transition-transform hover:scale-[1.03]"
+    >
+      <span className={`nameplate text-[1.3rem] sm:text-[1.45rem] ${light ? "text-white" : "text-ink-950"}`}>
+        Auto<span className={light ? "text-marigold-400" : "text-marigold-500"}>Fix</span>
+      </span>
+      <span
+        className={`spec mt-1 text-[0.5rem] ${light ? "text-slate-300" : "text-slate-500"}`}
+        style={{ letterSpacing: "0.34em" }}
+      >
+        Cyprus
+      </span>
     </a>
   );
 }
@@ -163,7 +169,7 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            className="btn-shine hidden items-center gap-2 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700 sm:inline-flex"
+            className="btn-shine hidden items-center gap-2 rounded-full bg-marigold-400 px-4 py-2.5 text-sm font-semibold text-ink-950 shadow-lg shadow-marigold-400/25 transition hover:bg-marigold-300 sm:inline-flex"
           >
             {t("nav.request")}
             <Icon.arrowRight className="h-4 w-4" />
@@ -182,7 +188,7 @@ export default function Navbar() {
 
       {/* Scroll-reading progress */}
       <div
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-brand-500 via-brand-600 to-brand-400 transition-[width] duration-150"
+        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-marigold-400 transition-[width] duration-150"
         style={{ width: `${progress}%`, opacity: scrolled ? 1 : 0 }}
       />
 
@@ -226,7 +232,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenu(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-5 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand-600/25"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-marigold-400 px-5 py-3.5 text-base font-semibold text-ink-950 shadow-lg shadow-marigold-400/25"
             >
               {t("nav.request")}
               <Icon.arrowRight className="h-4 w-4" />

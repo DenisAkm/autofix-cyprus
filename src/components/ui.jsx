@@ -159,19 +159,17 @@ export function Reveal({ children, as: Tag = "div", delay = 0, variant = "up", c
   );
 }
 
-/* Small eyebrow / pill label */
+/* The color-match swatch — the signature mark (petrol paint chip with gloss) */
+export function Swatch({ className = "h-3 w-3", marigold = false }) {
+  return <span aria-hidden="true" className={`swatch ${marigold ? "swatch-marigold" : ""} ${className}`} />;
+}
+
+/* Eyebrow / kicker — a mono "paint-code" spec label led by the swatch mark */
 export function Eyebrow({ children, dark = false }) {
   return (
-    <span
-      className={
-        "inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide " +
-        (dark
-          ? "bg-white/10 text-brand-100 ring-1 ring-white/15"
-          : "bg-brand-50 text-brand-700 ring-1 ring-brand-100")
-      }
-    >
-      <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-500" />
-      {children}
+    <span className={`inline-flex items-center gap-2.5 ${dark ? "text-slate-300" : "text-slate-600"}`}>
+      <Swatch className="h-3 w-3" />
+      <span className="spec text-[0.72rem]">{children}</span>
     </span>
   );
 }

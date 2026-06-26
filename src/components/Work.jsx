@@ -2,6 +2,7 @@ import { useI18n } from "../i18n/LanguageContext.jsx";
 import { CONTACT } from "../lib/config.js";
 import { Icon, Reveal } from "./ui.jsx";
 import BeforeAfter from "./BeforeAfter.jsx";
+import VideoLoop from "./VideoLoop.jsx";
 import SectionHeader from "./SectionHeader.jsx";
 
 export default function Work() {
@@ -9,12 +10,16 @@ export default function Work() {
   const items = t("work.items");
 
   return (
-    <section id="work" className="grain relative overflow-hidden bg-ink-950 py-20 text-white lg:py-28">
-      <div className="mesh-dark pointer-events-none absolute inset-0" />
+    <section id="work" className="on-dark relative overflow-hidden bg-ink-950 py-20 text-white lg:py-28">
+      {/* the cinematic loop, repurposed as ambient texture behind the gallery */}
+      <VideoLoop src="/video/hero.mp4?v=2" poster="/img/hero-poster.jpg?v=2" className="absolute inset-0 opacity-20" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-950/85 to-ink-950" />
+      <div className="grain pointer-events-none absolute inset-0 opacity-60" />
+
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHeader eyebrow={t("nav.work")} title={t("work.title")} subtitle={t("work.subtitle")} dark />
 
-        <div className="mx-auto mt-14 grid max-w-5xl gap-7 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, i) => {
             const before = item.img.replace(/\.jpg$/, "-before.jpg");
             const after = item.img.replace(/\.jpg$/, "-after.jpg");
@@ -23,7 +28,7 @@ export default function Work() {
                 key={i}
                 variant="scale"
                 delay={(i % 3) * 90}
-                className="overflow-hidden rounded-[1.75rem] bg-white/[0.04] ring-1 ring-white/10 shadow-2xl shadow-ink-950/50"
+                className="paper-dark overflow-hidden rounded-xl shadow-2xl shadow-black/40"
               >
                 <BeforeAfter
                   before={before}
@@ -33,10 +38,10 @@ export default function Work() {
                   afterLabel={t("work.after")}
                 />
                 <div className="p-5">
-                  <span className="inline-flex rounded-full bg-brand-600/90 px-3 py-1 text-xs font-semibold text-white">
+                  <span className="spec inline-flex rounded-md bg-brand-600 px-2.5 py-1 text-[0.6rem] text-white">
                     {item.tag}
                   </span>
-                  <h3 className="mt-2 text-lg font-bold text-white">{item.title}</h3>
+                  <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-slate-300">{item.desc}</p>
                 </div>
               </Reveal>
@@ -44,8 +49,7 @@ export default function Work() {
           })}
         </div>
 
-        <Reveal className="mt-10 flex flex-col items-center gap-2">
-          <p className="text-sm text-slate-400">{t("work.dragHint")}</p>
+        <Reveal className="mt-10 flex justify-center">
           <a
             href={CONTACT.instagram}
             target="_blank"

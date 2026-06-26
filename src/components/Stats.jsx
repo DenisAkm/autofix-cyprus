@@ -16,13 +16,11 @@ function Stat({ value, label, divider }) {
   const [ref, n] = useCountUp(num ?? 0, { decimals });
   return (
     <div className={`relative px-6 py-7 text-center ${divider}`}>
-      <div
-        ref={ref}
-        className="tabular bg-gradient-to-b from-white to-brand-100 bg-clip-text text-3xl font-extrabold text-transparent lg:text-4xl"
-      >
-        {num === null ? value : `${prefix}${n}${suffix}`}
+      <div ref={ref} className="tabular text-3xl font-bold tracking-tight text-ink-950 lg:text-[2.6rem]">
+        {num === null ? value : `${prefix}${n}`}
+        <span className="text-marigold-500">{suffix}</span>
       </div>
-      <div className="mt-1 text-sm font-medium text-brand-100/80">{label}</div>
+      <div className="spec mt-2 text-[0.62rem] text-slate-500">{label}</div>
     </div>
   );
 }
@@ -35,21 +33,17 @@ export default function Stats() {
   const liveRating = rev?.ok && rev.rating ? Number(rev.rating).toFixed(1) + "★" : null;
 
   return (
-    <div className="relative z-10 mx-auto -mt-16 max-w-6xl px-5 lg:px-8">
-      <Reveal
-        variant="scale"
-        className="grain lit-dark relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 shadow-2xl shadow-brand-900/30"
-      >
-        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
-        <div className="relative grid grid-cols-2 lg:grid-cols-4">
+    <div className="relative z-10 mx-auto -mt-14 max-w-6xl px-5 lg:px-8">
+      <Reveal variant="scale" className="paper relative overflow-hidden rounded-2xl shadow-[var(--shadow-lift)]">
+        <div className="grid grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
             <Stat
               key={i}
               value={liveRating && s.value.includes("★") ? liveRating : s.value}
               label={s.label}
-              divider={`${i < 2 ? "border-b border-white/10 lg:border-b-0" : ""} ${
-                i % 2 === 0 ? "border-r border-white/10 lg:border-r-0" : ""
-              } ${i > 0 ? "lg:border-l lg:border-white/10" : ""}`}
+              divider={`${i < 2 ? "border-b border-slate-200 lg:border-b-0" : ""} ${
+                i % 2 === 0 ? "border-r border-slate-200 lg:border-r-0" : ""
+              } ${i > 0 ? "lg:border-l lg:border-slate-200" : ""}`}
             />
           ))}
         </div>
