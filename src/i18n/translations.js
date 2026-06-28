@@ -2,9 +2,9 @@
 // Greek (el), German (de), Italian (it), Spanish (es), French (fr).
 
 export const LOCALES = {
+  el: { label: "Ελληνικά", short: "EL", flag: "🇬🇷" },
   en: { label: "English", short: "EN", flag: "🇬🇧" },
   ru: { label: "Русский", short: "RU", flag: "🇷🇺" },
-  el: { label: "Ελληνικά", short: "EL", flag: "🇬🇷" },
   de: { label: "Deutsch", short: "DE", flag: "🇩🇪" },
   it: { label: "Italiano", short: "IT", flag: "🇮🇹" },
   es: { label: "Español", short: "ES", flag: "🇪🇸" },
