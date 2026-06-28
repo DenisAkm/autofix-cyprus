@@ -127,7 +127,8 @@ export default function Navbar() {
   const light = !scrolled;
 
   return (
-    <header
+    <>
+      <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? "border-b border-slate-200/70 bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
       }`}
@@ -191,8 +192,11 @@ export default function Navbar() {
         className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-marigold-400 transition-[width] duration-150"
         style={{ width: `${progress}%`, opacity: scrolled ? 1 : 0 }}
       />
+      </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — rendered OUTSIDE <header>: when scrolled the header gets
+          backdrop-filter, which would make it the containing block for this
+          position:fixed overlay and clip it to the navbar's height. */}
       <div
         className={`fixed inset-0 z-50 overflow-hidden lg:hidden ${menu ? "" : "pointer-events-none"}`}
         aria-hidden={!menu}
@@ -247,6 +251,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

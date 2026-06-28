@@ -41,7 +41,7 @@ export default function Hero() {
             as="h1"
             variant="blur"
             delay={80}
-            className="nameplate nameplate-tight mt-6 text-[2.4rem] text-white sm:text-5xl lg:text-[3.7rem]"
+            className="nameplate mt-6 text-[2.4rem] text-white sm:text-5xl lg:text-[3.7rem]"
           >
             {t("hero.titleLead")} <span className="text-marigold-400">{t("hero.titleAccent")}</span>{" "}
             {t("hero.titleTail")}
