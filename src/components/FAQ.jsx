@@ -7,27 +7,22 @@ import SectionHeader from "./SectionHeader.jsx";
 function Item({ q, a, open, onToggle }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border transition-all duration-300 ${
-        open ? "border-brand-200 bg-white shadow-soft" : "border-slate-200 bg-white hover:border-brand-200"
+      className={`relative overflow-hidden rounded-sm border transition-all duration-300 ${
+        open ? "border-brand-400/40 bg-white/[0.03]" : "border-white/10 bg-white/[0.02] hover:border-white/20"
       }`}
     >
-      {/* left accent bar grows when open */}
       <span
-        className={`absolute left-0 top-1/2 w-1 -translate-y-1/2 bg-marigold-400 transition-all duration-300 ${
+        className={`absolute left-0 top-1/2 w-0.5 -translate-y-1/2 bg-brand-400 transition-all duration-300 ${
           open ? "h-2/3" : "h-0"
         }`}
       />
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-        aria-expanded={open}
-      >
-        <span className={`text-[15px] font-semibold transition-colors sm:text-base ${open ? "text-brand-800" : "text-ink-950"}`}>
+      <button onClick={onToggle} className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left" aria-expanded={open}>
+        <span className={`text-[15px] font-medium transition-colors sm:text-base ${open ? "text-white" : "text-slate-200"}`}>
           {q}
         </span>
         <span
           className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-all duration-300 ${
-            open ? "rotate-180 bg-brand-600 text-white" : "bg-slate-100 text-slate-500"
+            open ? "rotate-180 bg-brand-400 text-ink-950" : "bg-white/[0.06] text-slate-400"
           }`}
         >
           <Icon.chevron className="h-4 w-4" />
@@ -36,7 +31,7 @@ function Item({ q, a, open, onToggle }) {
       <div className="grid transition-all duration-300 ease-out" style={{ gridTemplateRows: open ? "1fr" : "0fr" }}>
         <div className="overflow-hidden">
           <p
-            className={`px-5 pb-5 text-[15px] leading-relaxed text-slate-600 transition-all duration-300 ${
+            className={`px-5 pb-5 text-[15px] leading-relaxed text-slate-300 transition-all duration-300 ${
               open ? "translate-y-0 opacity-100 delay-100" : "-translate-y-1 opacity-0"
             }`}
           >
@@ -59,22 +54,22 @@ export default function FAQ() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeader eyebrow={t("nav.faq")} title={t("faq.title")} subtitle={t("faq.subtitle")} center={false} />
 
-          <Reveal className="on-dark grain relative mt-8 overflow-hidden rounded-2xl bg-brand-700 p-6 text-white">
-            <h3 className="relative text-lg font-semibold">{t("faq.stillTitle")}</h3>
-            <p className="relative mt-1 text-sm text-brand-100">{t("faq.stillDesc")}</p>
-            <div className="relative mt-4 flex flex-wrap gap-2.5">
+          <Reveal className="card-dark relative mt-8 overflow-hidden rounded-sm p-6">
+            <h3 className="font-serif text-lg font-medium text-white">{t("faq.stillTitle")}</h3>
+            <p className="mt-1 text-sm text-slate-300">{t("faq.stillDesc")}</p>
+            <div className="mt-4 flex flex-wrap gap-2.5">
               <a
                 href={CONTACT.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-brand-800 transition hover:bg-brand-50"
+                className="inline-flex items-center gap-2 rounded-sm bg-brand-400 px-4 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-brand-300"
               >
-                <Icon.whatsapp className="h-4 w-4 text-emerald-500" />
+                <Icon.whatsapp className="h-4 w-4" />
                 WhatsApp
               </a>
               <a
                 href={CONTACT.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 transition hover:bg-white/20"
+                className="inline-flex items-center gap-2 rounded-sm border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"
               >
                 <Icon.phone className="h-4 w-4" />
                 {CONTACT.phoneDisplay}

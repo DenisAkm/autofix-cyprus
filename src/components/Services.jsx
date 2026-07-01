@@ -12,31 +12,29 @@ export default function Services() {
     <section id="services" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
       <SectionHeader eyebrow={t("nav.services")} title={t("services.title")} subtitle={t("services.subtitle")} />
 
-      {/* Job sheet — numbered work order rows on a single paper panel */}
-      <Reveal variant="scale" className="paper mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl">
-        <div className="divide-y divide-slate-200">
-          {items.map((item, i) => {
-            const I = ICONS[i];
-            return (
-              <a
-                key={i}
-                href="#contact"
-                className="group grid grid-cols-[2rem_1fr_auto] items-center gap-4 px-5 py-5 transition-colors hover:bg-slate-50 sm:grid-cols-[2.5rem_1fr_auto] sm:gap-6 sm:px-8 sm:py-6"
-              >
-                <span className="spec text-sm text-brand-600">{String(i + 1).padStart(2, "0")}</span>
-                <div className="min-w-0">
-                  <h3 className="flex items-center gap-2.5 text-[1.05rem] font-semibold text-ink-950">
-                    <I className="h-5 w-5 shrink-0 text-brand-600" />
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-[14.5px] leading-relaxed text-slate-600">{item.desc}</p>
+      <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {items.map((item, i) => {
+          const I = ICONS[i];
+          return (
+            <Reveal key={i} variant="scale" delay={(i % 3) * 90}>
+              <a href="#contact" className="card-dark card-hover group flex h-full flex-col rounded-sm p-7">
+                <div className="flex items-center justify-between">
+                  <div className="grid h-12 w-12 place-items-center rounded-sm border border-white/10 bg-white/[0.03] text-brand-400 transition-colors group-hover:border-brand-400/50">
+                    <I className="h-6 w-6" />
+                  </div>
+                  <span className="caps text-[0.6rem] text-slate-500">{String(i + 1).padStart(2, "0")}</span>
                 </div>
-                <Icon.arrowRight className="h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1 group-hover:text-brand-600" />
+                <h3 className="mt-5 text-lg font-medium text-white">{item.title}</h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-300">{item.desc}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {t("nav.request")}
+                  <Icon.arrowRight className="h-4 w-4" />
+                </span>
               </a>
-            );
-          })}
-        </div>
-      </Reveal>
+            </Reveal>
+          );
+        })}
+      </div>
     </section>
   );
 }

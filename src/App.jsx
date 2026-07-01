@@ -18,7 +18,7 @@ import { useI18n } from "./i18n/LanguageContext.jsx";
 export default function App() {
   const { t } = useI18n();
   return (
-    <div className="min-h-screen bg-white pb-14 sm:pb-0">
+    <div className="min-h-screen bg-ink-950 pb-14 sm:pb-0">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"

@@ -10,7 +10,7 @@ export default function WhyChoose() {
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Image */}
         <Reveal variant="left" className="relative order-last lg:order-first">
-          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-ink-950/20 ring-1 ring-slate-200">
+          <div className="frame-luxe overflow-hidden rounded-sm shadow-[var(--shadow-lift)]">
             <img
               src="/img/accent-tools.jpg"
               alt="Quality car repair work delivered by AutoFix Cyprus"
@@ -18,20 +18,19 @@ export default function WhyChoose() {
               className="aspect-[5/4] w-full object-cover"
             />
           </div>
-          {/* floating stat */}
-          <div className="paper anim-float absolute -bottom-6 right-6 rounded-xl px-5 py-4 text-center shadow-[var(--shadow-lift)]">
-            <div className="text-3xl font-bold tracking-tight text-ink-950">
-              500<span className="text-marigold-500">+</span>
+          <div className="card-dark anim-float absolute -bottom-6 right-6 rounded-sm px-5 py-4 text-center shadow-[var(--shadow-lift)]">
+            <div className="font-serif text-3xl font-semibold text-white">
+              500<span className="text-brand-400">+</span>
             </div>
-            <div className="spec mt-1 text-[0.58rem] text-slate-500">{t("stats")[0].label}</div>
+            <div className="caps mt-1 text-[0.54rem] text-slate-400">{t("stats")[0].label}</div>
           </div>
-          <div className="paper anim-float-slow absolute -top-5 -left-3 hidden items-center gap-2.5 rounded-xl px-4 py-3 shadow-[var(--shadow-lift)] sm:flex">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 text-white">
+          <div className="card-dark anim-float-slow absolute -top-5 -left-3 hidden items-center gap-2.5 rounded-sm px-4 py-3 shadow-[var(--shadow-lift)] sm:flex">
+            <span className="grid h-9 w-9 place-items-center rounded-sm bg-brand-400 text-ink-950">
               <Icon.badge className="h-5 w-5" />
             </span>
             <div className="pr-1 leading-tight">
-              <div className="text-sm font-bold text-ink-950">3 {t("why.warrantyUnit")}</div>
-              <span className="spec block text-[0.55rem] text-slate-500">{t("trust.items")[3].title}</span>
+              <div className="text-sm font-semibold text-white">3 {t("why.warrantyUnit")}</div>
+              <span className="caps block text-[0.52rem] text-slate-400">{t("trust.items")[3].title}</span>
             </div>
           </div>
         </Reveal>
@@ -41,18 +40,18 @@ export default function WhyChoose() {
           <Reveal>
             <Eyebrow>{t("why.eyebrow")}</Eyebrow>
           </Reveal>
-          <Reveal as="h2" variant="right" delay={60} className="mt-4 text-[1.9rem] font-bold leading-[1.06] tracking-[-0.02em] text-ink-950 sm:text-[2.5rem]">
+          <Reveal as="h2" variant="right" delay={60} className="mt-5 font-serif text-[2rem] font-semibold leading-[1.08] tracking-[-0.01em] text-white sm:text-[2.7rem]">
             {t("why.title")}
           </Reveal>
           <div className="mt-8 space-y-5">
             {items.map((item, i) => (
               <Reveal key={i} delay={i * 90} className="flex gap-4">
-                <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-700 ring-1 ring-brand-100">
-                  <Icon.check className="h-5 w-5" stroke={2.5} />
+                <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-sm border border-white/10 bg-white/[0.03] text-brand-400">
+                  <Icon.check className="h-5 w-5" stroke={2.4} />
                 </span>
                 <div>
-                  <h3 className="text-base font-semibold text-ink-950">{item.title}</h3>
-                  <p className="mt-1 text-[15px] leading-relaxed text-slate-600">{item.desc}</p>
+                  <h3 className="text-base font-medium text-white">{item.title}</h3>
+                  <p className="mt-1 text-[15px] leading-relaxed text-slate-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}

@@ -1,64 +1,64 @@
 @import "tailwindcss";
 
 /* ----------------------------------------------------------------------------
-   Design tokens — "Spray Booth"
-   Monochrome plaster/steel/phantom ground + petrol house-paint + marigold spark.
-   Type: IBM Plex (Sans for display+body, Mono for specs/codes).
+   Design tokens — "Concours"
+   Obsidian ground + chrome text + champagne accent. Cinematic, luxe, editorial.
+   Type: Noto Serif Display (display) + Inter (body/UI). Champagne = the one accent.
 ---------------------------------------------------------------------------- */
 @theme {
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Noto Serif Display", Georgia, "Times New Roman", serif;
 
-  /* Petrol — the house paint / brand (evolved from the heritage blue) */
-  --color-brand-50:  #eaf5f5;
-  --color-brand-100: #cde8e9;
-  --color-brand-200: #a2d2d5;
-  --color-brand-300: #6db1b7;
-  --color-brand-400: #318c94;
-  --color-brand-500: #127079;  /* "wet paint" — lighter hover */
-  --color-brand-600: #0c545e;  /* PRIMARY petrol */
-  --color-brand-700: #0a444d;
-  --color-brand-800: #0a3941;
-  --color-brand-900: #0b2d33;
-  --color-brand-950: #061e22;
+  /* Champagne — the single accent (brand + CTA both map here) */
+  --color-brand-50:  #f8f1e3;
+  --color-brand-100: #efe0bf;
+  --color-brand-200: #e7d3a8;  /* champagne light */
+  --color-brand-300: #d9be85;
+  --color-brand-400: #c9a86a;  /* champagne */
+  --color-brand-500: #b08e4e;
+  --color-brand-600: #93743c;
+  --color-brand-700: #6f5730;
+  --color-brand-800: #4e3e24;
+  --color-brand-900: #322817;
+  --color-brand-950: #211a0f;
 
-  /* Marigold — signal / CTA spark (Cyprus sun, turn-signal energy) */
-  --color-marigold-50:  #fdf3e2;
-  --color-marigold-100: #fae2bc;
-  --color-marigold-200: #f6cd8b;
-  --color-marigold-300: #f2b85a;
-  --color-marigold-400: #f0a12e;  /* base */
-  --color-marigold-500: #e08a12;
-  --color-marigold-600: #be6f0c;
-  --color-marigold-700: #97560b;  /* marigold text on light */
-  --color-marigold-800: #6f3f0a;
-  --color-marigold-900: #4a2a08;
+  /* CTA / signal — same champagne so existing marigold-* classes render gold */
+  --color-marigold-50:  #f8f1e3;
+  --color-marigold-100: #efe0bf;
+  --color-marigold-200: #e7d3a8;
+  --color-marigold-300: #d9be85;
+  --color-marigold-400: #c9a86a;
+  --color-marigold-500: #b08e4e;
+  --color-marigold-600: #93743c;
+  --color-marigold-700: #6f5730;
+  --color-marigold-800: #4e3e24;
+  --color-marigold-900: #322817;
 
-  /* Phantom — automotive near-black (ink) */
-  --color-ink-700: #2a2f36;
-  --color-ink-800: #1f2329;
-  --color-ink-900: #191c21;
-  --color-ink-950: #15181c;  /* phantom */
+  /* Obsidian (ink) — page + dark surfaces */
+  --color-ink-700: #26282f;
+  --color-ink-800: #1c1d21;  /* graphite — cards */
+  --color-ink-900: #141519;
+  --color-ink-950: #0e0e10;  /* obsidian */
 
-  /* Stone — warm neutral, overrides Tailwind's cool slate everywhere */
-  --color-slate-50:  #f6f4ef;  /* light section ground */
-  --color-slate-100: #edeae2;  /* steel — hairlines, insets */
-  --color-slate-200: #dfdbd1;  /* borders */
-  --color-slate-300: #c7c2b6;  /* muted / light text on dark */
-  --color-slate-400: #a8a294;
-  --color-slate-500: #837d71;
-  --color-slate-600: #57534b;  /* warm graphite — body text */
-  --color-slate-700: #403c35;
-  --color-slate-800: #2c2925;
-  --color-slate-900: #1d1b18;
+  /* Cool grey / chrome — overrides Tailwind slate */
+  --color-slate-50:  #f4f5f7;
+  --color-slate-100: #e7e9ec;
+  --color-slate-200: #d3d7dd;  /* chrome — primary light text on dark */
+  --color-slate-300: #a7adb6;  /* muted light text */
+  --color-slate-400: #868c95;  /* silver */
+  --color-slate-500: #6c717a;
+  --color-slate-600: #52565e;
+  --color-slate-700: #3a3d44;  /* borders on dark */
+  --color-slate-800: #26282e;
+  --color-slate-900: #191a1e;
 
-  --shadow-soft: 0 1px 2px rgb(21 24 28 / 0.05), 0 10px 26px -12px rgb(21 24 28 / 0.14);
-  --shadow-lift: 0 22px 50px -22px rgb(21 24 28 / 0.30);
-  --shadow-glass: 0 14px 40px -16px rgb(21 24 28 / 0.20);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.30), 0 14px 34px -14px rgb(0 0 0 / 0.55);
+  --shadow-lift: 0 34px 74px -32px rgb(0 0 0 / 0.78);
+  --shadow-glass: 0 20px 50px -20px rgb(0 0 0 / 0.6);
 
-  --radius-xl: 0.5rem;
-  --radius-2xl: 0.75rem;
-  --radius-3xl: 1rem;
+  --radius-xl: 0.25rem;
+  --radius-2xl: 0.375rem;
+  --radius-3xl: 0.5rem;
 }
 
 /* ----------------------------------------------------------------------------
@@ -77,106 +77,82 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: #efede7;  /* plaster */
-  color: #15181c;       /* phantom */
+  background: #0e0e10;  /* obsidian */
+  color: #d3d7dd;       /* chrome */
   overflow-x: clip;
   max-width: 100vw;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-marigold-400) 40%, transparent);
-  color: var(--color-ink-950);
+  background: color-mix(in srgb, var(--color-brand-400) 42%, transparent);
+  color: #0e0e10;
 }
 
-/* Visible keyboard focus (a11y). Mouse clicks don't trigger :focus-visible. */
 :focus-visible {
-  outline: 2px solid var(--color-brand-600);
+  outline: 2px solid var(--color-brand-400);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
-/* On dark sections, use a light focus ring for contrast */
-.on-dark :focus-visible,
-.bg-ink-950 :focus-visible,
-[class*="ink-950"] :focus-visible {
-  outline-color: var(--color-marigold-400);
-}
+/* Light surfaces (rare) get a darker focus ring */
+.on-light :focus-visible { outline-color: var(--color-brand-700); }
 
-/* Refined scrollbar */
 ::-webkit-scrollbar { width: 11px; height: 11px; }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-track { background: #0e0e10; }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--color-brand-700) 45%, #c7c2b6);
+  background: color-mix(in srgb, var(--color-brand-400) 45%, #26282f);
   border-radius: 999px;
-  border: 3px solid #efede7;
+  border: 3px solid #0e0e10;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--color-brand-700); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-400); }
 
 /* ----------------------------------------------------------------------------
    Identity utilities
 ---------------------------------------------------------------------------- */
 @layer utilities {
-  /* Display "nameplate" — automotive tailgate badge energy */
-  .nameplate {
+  /* Small-caps label — kickers, marque strips, data */
+  .caps {
     text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    line-height: 0.98;
-  }
-  /* Mono "spec" label — paint codes, kickers, indices, coordinates */
-  .spec {
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.22em;
     font-weight: 500;
   }
   .tabular { font-variant-numeric: tabular-nums; }
 
-  /* Panel seam — the gap between two body panels (structural divider) */
-  .seam-x {
-    position: relative;
-    height: 1px;
-    background: color-mix(in srgb, var(--color-ink-950) 16%, transparent);
-  }
-  .seam-x::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    top: 1px;
-    height: 1px;
-    background: color-mix(in srgb, #ffffff 75%, transparent);
-  }
-  .seam-x-dark {
-    background: color-mix(in srgb, #ffffff 14%, transparent);
-  }
-  .seam-x-dark::after {
-    background: color-mix(in srgb, #000000 40%, transparent);
+  /* The "specular" gleam — chrome text with a slow champagne sweep (signature) */
+  .gleam {
+    background: linear-gradient(100deg, #c7cbd1 0%, #c7cbd1 38%, #f3e6c8 50%, #c7cbd1 62%, #c7cbd1 100%);
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: sweep 6.5s ease-in-out infinite;
   }
 
-  /* Paper card — white "job sheet" on the plaster ground */
-  .paper {
-    background: #ffffff;
-    border: 1px solid color-mix(in srgb, var(--color-ink-950) 10%, transparent);
-  }
-  .paper-dark {
-    background: color-mix(in srgb, #ffffff 4%, transparent);
-    border: 1px solid color-mix(in srgb, #ffffff 12%, transparent);
-  }
-
-  /* Color-match swatch — the signature mark; petrol chip with a paint gloss */
-  .swatch {
-    position: relative;
+  /* Thin champagne hairline — kicker dash & dividers */
+  .rule {
     display: inline-block;
-    background: var(--color-brand-600);
-    border-radius: 3px;
-    overflow: hidden;
+    width: 34px;
+    height: 1px;
+    background: var(--color-brand-400);
+    vertical-align: middle;
   }
-  .swatch::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgb(255 255 255 / 0.32), transparent 46%);
+  .hair { border-color: color-mix(in srgb, var(--color-brand-400) 24%, transparent); }
+
+  /* Graphite card on obsidian, hairline edge */
+  .card-dark {
+    background: var(--color-ink-800);
+    border: 1px solid color-mix(in srgb, #ffffff 8%, transparent);
   }
-  .swatch-marigold { background: var(--color-marigold-400); }
+  /* Champagne-framed exhibit (imagery / before-after) */
+  .frame-luxe {
+    border: 1px solid color-mix(in srgb, var(--color-brand-400) 42%, transparent);
+    border-radius: 2px;
+  }
+
+  .card-hover {
+    transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s cubic-bezier(.2,.7,.2,1), border-color .4s;
+    will-change: transform;
+  }
 
   .btn-shine { position: relative; overflow: hidden; }
   .btn-shine::after {
@@ -184,121 +160,81 @@ body {
     position: absolute;
     top: 0; left: -120%;
     width: 60%; height: 100%;
-    background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.35), transparent);
+    background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.28), transparent);
     transform: skewX(-18deg);
     transition: left .7s ease;
   }
   .btn-shine:hover::after { left: 140%; }
 
-  /* Scroll-reveal — variant-aware, expo-out spring easing */
+  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition:
-      opacity .8s cubic-bezier(.16, 1, .3, 1),
-      transform .85s cubic-bezier(.16, 1, .3, 1);
+      opacity .9s cubic-bezier(.16, 1, .3, 1),
+      transform .95s cubic-bezier(.16, 1, .3, 1);
     will-change: transform, opacity;
   }
-  .reveal[data-v="scale"] { transform: translateY(20px) scale(.94); }
+  .reveal[data-v="scale"] { transform: translateY(20px) scale(.95); }
   .reveal[data-v="left"]  { transform: translateX(-44px); }
   .reveal[data-v="right"] { transform: translateX(44px); }
   .reveal[data-v="blur"]  { transform: translateY(16px); }
-  .reveal.in {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.in { opacity: 1; transform: none; }
 
-  /* Card hover lift — declared after .reveal so the hover transform wins the
-     specificity tie against .reveal.in { transform: none } on revealed cards */
-  .card-hover {
-    transition: transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s cubic-bezier(.2,.7,.2,1), border-color .4s;
-    will-change: transform;
-  }
+  /* declared after .reveal so hover transform wins vs .reveal.in */
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lift);
   }
 
-  /* Edge-fade mask for marquees */
   .mask-fade-x {
     -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   }
 
-  /* Living grain / noise overlay for phantom surfaces */
+  /* Fine film grain for dark cinematic surfaces */
   .grain::before {
     content: "";
     position: absolute;
     inset: -50%;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.06;
+    opacity: 0.05;
     mix-blend-mode: overlay;
     pointer-events: none;
     animation: grain 7s steps(6) infinite;
-  }
-
-  /* Hazard chevron strip — thin automotive accent rule */
-  .hazard {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      var(--color-marigold-400) 0 10px,
-      var(--color-ink-950) 10px 20px
-    );
   }
 }
 
 /* ----------------------------------------------------------------------------
    Keyframes
 ---------------------------------------------------------------------------- */
-@keyframes floaty {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
+@keyframes sweep { 0%,100% { background-position: 125% 0; } 50% { background-position: -25% 0; } }
+
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .anim-float { animation: floaty 6s ease-in-out infinite; }
 .anim-float-slow { animation: floaty 9s ease-in-out infinite; }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@keyframes marquee-rev {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .anim-marquee { animation: marquee 64s linear infinite; }
 .anim-marquee-rev { animation: marquee-rev 74s linear infinite; }
 .marquee-track:hover .anim-marquee,
 .marquee-track:hover .anim-marquee-rev { animation-play-state: paused; }
 
 @keyframes grain {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-4%, 3%); }
-  40% { transform: translate(3%, -4%); }
-  60% { transform: translate(-3%, 2%); }
-  80% { transform: translate(2%, 4%); }
-  100% { transform: translate(0, 0); }
+  0% { transform: translate(0,0); } 20% { transform: translate(-4%,3%); }
+  40% { transform: translate(3%,-4%); } 60% { transform: translate(-3%,2%); }
+  80% { transform: translate(2%,4%); } 100% { transform: translate(0,0); }
 }
 
-@keyframes draw-line {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
+@keyframes draw-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes travel { 0% { left: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
 
-@keyframes travel {
-  0% { left: 0%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
-}
-
-@keyframes pop-in {
-  from { opacity: 0; transform: scale(.6); }
-  to { opacity: 1; transform: scale(1); }
-}
+@keyframes pop-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 .anim-pop { animation: pop-in .5s cubic-bezier(.16,1,.3,1) both; }
 
 @keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 60%, transparent); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 55%, transparent); }
   70% { box-shadow: 0 0 0 14px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
@@ -312,4 +248,5 @@ body {
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .gleam { animation: none; }
 }

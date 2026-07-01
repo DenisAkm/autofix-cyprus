@@ -159,17 +159,12 @@ export function Reveal({ children, as: Tag = "div", delay = 0, variant = "up", c
   );
 }
 
-/* The color-match swatch — the signature mark (petrol paint chip with gloss) */
-export function Swatch({ className = "h-3 w-3", marigold = false }) {
-  return <span aria-hidden="true" className={`swatch ${marigold ? "swatch-marigold" : ""} ${className}`} />;
-}
-
-/* Eyebrow / kicker — a mono "paint-code" spec label led by the swatch mark */
-export function Eyebrow({ children, dark = false }) {
+/* Eyebrow / kicker — champagne hairline + small-caps label */
+export function Eyebrow({ children }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${dark ? "text-slate-300" : "text-slate-600"}`}>
-      <Swatch className="h-3 w-3" />
-      <span className="spec text-[0.72rem]">{children}</span>
+    <span className="inline-flex items-center gap-3 text-brand-400">
+      <span className="rule" />
+      <span className="caps text-[0.7rem]">{children}</span>
     </span>
   );
 }

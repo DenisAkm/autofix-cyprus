@@ -20,7 +20,7 @@ export default function FloatingActions() {
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label={t("floating.top")}
-          className={`grid h-11 w-11 place-items-center rounded-full bg-white text-slate-600 shadow-lg ring-1 ring-slate-200 transition-all hover:text-brand-600 ${
+          className={`grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-ink-800 text-slate-300 shadow-lg transition-all hover:text-brand-400 ${
             showTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
           }`}
         >
@@ -42,20 +42,20 @@ export default function FloatingActions() {
       </div>
 
       {/* Mobile: sticky bottom action bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-slate-200 bg-white/95 backdrop-blur-lg sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-white/10 bg-ink-950/95 backdrop-blur-lg sm:hidden">
         <a
           href={CONTACT.phoneHref}
-          className="flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold text-brand-700"
+          className="flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold text-brand-400"
         >
           <Icon.phone className="h-5 w-5" />
           {t("floating.call")}
         </a>
-        <span className="my-2 w-px bg-slate-200" />
+        <span className="my-2 w-px bg-white/10" />
         <a
           href={CONTACT.whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold text-emerald-600"
+          className="flex flex-1 items-center justify-center gap-2 py-3.5 text-sm font-semibold text-emerald-400"
         >
           <Icon.whatsapp className="h-5 w-5" />
           WhatsApp

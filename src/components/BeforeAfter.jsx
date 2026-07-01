@@ -49,10 +49,10 @@ export default function BeforeAfter({ before, after, alt = "", beforeLabel = "Be
       </div>
 
       {/* labels */}
-      <span className="spec pointer-events-none absolute left-3 top-3 rounded-md bg-ink-950/75 px-2.5 py-1 text-[0.66rem] text-white ring-1 ring-white/15 backdrop-blur">
+      <span className="caps pointer-events-none absolute left-3 top-3 rounded-sm bg-ink-950/80 px-2.5 py-1 text-[0.6rem] text-slate-200 ring-1 ring-white/15 backdrop-blur">
         {beforeLabel}
       </span>
-      <span className="spec pointer-events-none absolute right-3 top-3 rounded-md bg-brand-600 px-2.5 py-1 text-[0.66rem] text-white shadow-lg shadow-brand-950/40">
+      <span className="caps pointer-events-none absolute right-3 top-3 rounded-sm bg-brand-400 px-2.5 py-1 text-[0.6rem] text-ink-950 shadow-lg shadow-black/40">
         {afterLabel}
       </span>
 

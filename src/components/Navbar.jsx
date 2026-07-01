@@ -3,27 +3,24 @@ import { useI18n } from "../i18n/LanguageContext.jsx";
 import { CONTACT } from "../lib/config.js";
 import { Icon } from "./ui.jsx";
 
-export function Logo({ light = false }) {
+export function Logo() {
   return (
     <a
       href="#top"
       aria-label="AutoFix Cyprus — home"
-      className="group inline-flex flex-col leading-none transition-transform hover:scale-[1.03]"
+      className="group inline-flex flex-col leading-none transition-transform hover:scale-[1.02]"
     >
-      <span className={`nameplate text-[1.3rem] sm:text-[1.45rem] ${light ? "text-white" : "text-ink-950"}`}>
-        Auto<span className={light ? "text-marigold-400" : "text-marigold-500"}>Fix</span>
+      <span className="font-serif text-[1.4rem] font-semibold text-white sm:text-[1.5rem]">
+        Auto<span className="italic text-brand-400">Fix</span>
       </span>
-      <span
-        className={`spec mt-1 text-[0.5rem] ${light ? "text-slate-300" : "text-slate-500"}`}
-        style={{ letterSpacing: "0.34em" }}
-      >
+      <span className="caps mt-1 text-[0.5rem] text-slate-400" style={{ letterSpacing: "0.34em" }}>
         Cyprus
       </span>
     </a>
   );
 }
 
-function LanguageSwitcher({ light = false }) {
+function LanguageSwitcher() {
   const { lang, setLang, locales } = useI18n();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -38,11 +35,7 @@ function LanguageSwitcher({ light = false }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
-          light
-            ? "border-white/25 bg-white/10 text-white backdrop-blur hover:border-white/40"
-            : "border-slate-200 bg-white/70 text-slate-700 hover:border-brand-300 hover:text-brand-700"
-        }`}
+        className="flex items-center gap-1.5 rounded-sm border border-white/20 bg-white/[0.06] px-3 py-1.5 text-sm font-medium text-white backdrop-blur transition hover:border-white/40"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -52,7 +45,7 @@ function LanguageSwitcher({ light = false }) {
       </button>
       {open && (
         <ul
-          className="absolute right-0 mt-2 w-40 overflow-hidden rounded-xl border border-slate-100 bg-white p-1 shadow-xl shadow-slate-900/10"
+          className="absolute right-0 mt-2 w-44 overflow-hidden rounded-sm border border-white/10 bg-ink-900 p-1 shadow-2xl shadow-black/60"
           role="listbox"
         >
           {Object.entries(locales).map(([code, l]) => (
@@ -62,8 +55,8 @@ function LanguageSwitcher({ light = false }) {
                   setLang(code);
                   setOpen(false);
                 }}
-                className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  lang === code ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-50"
+                className={`flex w-full items-center gap-2.5 rounded-sm px-3 py-2 text-sm font-medium transition ${
+                  lang === code ? "bg-white/[0.06] text-brand-300" : "text-slate-300 hover:bg-white/5 hover:text-white"
                 }`}
                 role="option"
                 aria-selected={lang === code}
@@ -97,7 +90,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the nav link for the section in view
   useEffect(() => {
     const ids = ["services", "work", "how", "faq", "contact"];
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
@@ -123,75 +115,65 @@ export default function Navbar() {
     { href: "#contact", id: "contact", label: t("nav.contact") },
   ];
 
-  // Light theme at the top (over the dark video hero); dark theme once scrolled (over white page)
-  const light = !scrolled;
-
   return (
     <>
       <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-slate-200/70 bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Logo light={light} />
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled ? "border-b border-white/10 bg-ink-950/80 backdrop-blur-xl" : "bg-transparent"
+        }`}
+      >
+        <nav className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 lg:px-8">
+          <Logo />
 
-        <div className="hidden items-center gap-1 lg:flex">
-          {links.map((l) => (
+          <div className="hidden items-center gap-1 lg:flex">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className={`relative whitespace-nowrap rounded-sm px-3.5 py-2 text-sm font-medium transition hover:text-white ${
+                  active === l.id ? "text-white" : "text-slate-300"
+                }`}
+              >
+                {l.label}
+                <span
+                  className={`absolute inset-x-3.5 -bottom-0.5 h-px bg-brand-400 transition-all duration-300 ${
+                    active === l.id ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LanguageSwitcher />
             <a
-              key={l.href}
-              href={l.href}
-              className={`relative whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium transition ${
-                light
-                  ? `text-white/85 hover:bg-white/10 hover:text-white ${active === l.id ? "text-white" : ""}`
-                  : `hover:bg-slate-100/70 hover:text-brand-700 ${active === l.id ? "text-brand-700" : "text-slate-600"}`
-              }`}
+              href={CONTACT.phoneHref}
+              className="hidden items-center gap-2 rounded-sm px-3 py-2 text-sm font-medium text-slate-300 transition hover:text-white sm:flex"
             >
-              {l.label}
-              <span
-                className={`absolute inset-x-3.5 -bottom-0.5 h-0.5 rounded-full transition-all duration-300 ${
-                  light ? "bg-white" : "bg-brand-600"
-                } ${active === l.id ? "opacity-100" : "opacity-0"}`}
-              />
+              <Icon.phone className="h-4 w-4" />
+              <span className="hidden xl:inline">{CONTACT.phoneDisplay}</span>
             </a>
-          ))}
-        </div>
+            <a
+              href="#contact"
+              className="btn-shine hidden items-center gap-2 rounded-sm bg-brand-400 px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-brand-300 sm:inline-flex"
+            >
+              {t("nav.request")}
+              <Icon.arrowRight className="h-4 w-4" />
+            </a>
+            <button
+              onClick={() => setMenu(true)}
+              className="grid h-10 w-10 place-items-center rounded-sm border border-white/20 bg-white/[0.06] text-white backdrop-blur transition lg:hidden"
+              aria-label="Open menu"
+            >
+              <Icon.menu className="h-5 w-5" />
+            </button>
+          </div>
+        </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <LanguageSwitcher light={light} />
-          <a
-            href={CONTACT.phoneHref}
-            className={`hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition sm:flex ${
-              light ? "text-white/90 hover:text-white" : "text-slate-700 hover:text-brand-700"
-            }`}
-          >
-            <Icon.phone className="h-4 w-4" />
-            <span className="hidden xl:inline">{CONTACT.phoneDisplay}</span>
-          </a>
-          <a
-            href="#contact"
-            className="btn-shine hidden items-center gap-2 rounded-full bg-marigold-400 px-4 py-2.5 text-sm font-semibold text-ink-950 shadow-lg shadow-marigold-400/25 transition hover:bg-marigold-300 sm:inline-flex"
-          >
-            {t("nav.request")}
-            <Icon.arrowRight className="h-4 w-4" />
-          </a>
-          <button
-            onClick={() => setMenu(true)}
-            className={`grid h-10 w-10 place-items-center rounded-xl border transition lg:hidden ${
-              light ? "border-white/25 bg-white/10 text-white backdrop-blur" : "border-slate-200 bg-white/70 text-slate-700"
-            }`}
-            aria-label="Open menu"
-          >
-            <Icon.menu className="h-5 w-5" />
-          </button>
-        </div>
-      </nav>
-
-      {/* Scroll-reading progress */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-marigold-400 transition-[width] duration-150"
-        style={{ width: `${progress}%`, opacity: scrolled ? 1 : 0 }}
-      />
+        <div
+          className="absolute inset-x-0 bottom-0 h-px origin-left bg-brand-400 transition-[width] duration-150"
+          style={{ width: `${progress}%`, opacity: scrolled ? 1 : 0 }}
+        />
       </header>
 
       {/* Mobile menu — rendered OUTSIDE <header>: when scrolled the header gets
@@ -202,11 +184,11 @@ export default function Navbar() {
         aria-hidden={!menu}
       >
         <div
-          className={`absolute inset-0 bg-ink-950/40 backdrop-blur-sm transition-opacity ${menu ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity ${menu ? "opacity-100" : "opacity-0"}`}
           onClick={() => setMenu(false)}
         />
         <div
-          className={`absolute right-0 top-0 h-full w-[82%] max-w-sm bg-white p-6 shadow-2xl transition-transform duration-300 ${
+          className={`absolute right-0 top-0 h-full w-[82%] max-w-sm border-l border-white/10 bg-ink-950 p-6 shadow-2xl transition-transform duration-300 ${
             menu ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -214,7 +196,7 @@ export default function Navbar() {
             <Logo />
             <button
               onClick={() => setMenu(false)}
-              className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 text-slate-700"
+              className="grid h-10 w-10 place-items-center rounded-sm border border-white/15 text-white"
               aria-label="Close menu"
             >
               <Icon.close className="h-5 w-5" />
@@ -226,7 +208,7 @@ export default function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMenu(false)}
-                className="rounded-xl px-4 py-3 text-base font-semibold text-slate-700 transition hover:bg-brand-50 hover:text-brand-700"
+                className="rounded-sm px-4 py-3 text-base font-medium text-slate-200 transition hover:bg-white/5 hover:text-white"
               >
                 {l.label}
               </a>
@@ -236,14 +218,14 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenu(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-marigold-400 px-5 py-3.5 text-base font-semibold text-ink-950 shadow-lg shadow-marigold-400/25"
+              className="flex w-full items-center justify-center gap-2 rounded-sm bg-brand-400 px-5 py-3.5 text-base font-semibold text-ink-950"
             >
               {t("nav.request")}
               <Icon.arrowRight className="h-4 w-4" />
             </a>
             <a
               href={CONTACT.phoneHref}
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-3.5 text-base font-semibold text-slate-700"
+              className="flex w-full items-center justify-center gap-2 rounded-sm border border-white/15 px-5 py-3.5 text-base font-semibold text-white"
             >
               <Icon.phone className="h-4 w-4" />
               {CONTACT.phoneDisplay}

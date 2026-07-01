@@ -16,17 +16,12 @@ export default function TrustFeatures() {
         {items.map((item, i) => {
           const I = ICONS[i];
           return (
-            <Reveal
-              key={i}
-              variant="scale"
-              delay={i * 90}
-              className="paper card-hover group relative overflow-hidden rounded-xl p-7"
-            >
-              <div className="grid h-12 w-12 place-items-center rounded-lg bg-brand-50 text-brand-700 ring-1 ring-brand-100 transition-colors group-hover:bg-brand-600 group-hover:text-white">
+            <Reveal key={i} variant="scale" delay={i * 90} className="card-dark card-hover group rounded-sm p-7">
+              <div className="grid h-12 w-12 place-items-center rounded-sm border border-white/10 bg-white/[0.03] text-brand-400 transition-colors group-hover:border-brand-400/50">
                 <I className="h-6 w-6" />
               </div>
-              <h3 className="mt-5 text-lg font-semibold text-ink-950">{item.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-slate-600">{item.desc}</p>
+              <h3 className="mt-5 text-lg font-medium text-white">{item.title}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-slate-300">{item.desc}</p>
             </Reveal>
           );
         })}
